@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="container"  style="padding-top: 2%">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            {% if username %}
+                {% if delete %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Note deleted successfully
+                    </div>
+                {% endif %}
+                <!-- <h1>Welcome, {{ username }}</h1> -->
+                {% if notes %}
+                    <table class="table table-resposive table-hover table-dark table-bordered" style="background-color: white;">
+                        <thead class="text-center">
+                            <tr>
+                                <th>ID Cotización</th>
+                                <th>Fecha de solicitud</th>
+                                <th>Tipo de servicio</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for note in notes %}
+                                <tr>
+                                     <td>
+                                     <a href="/notes/{{ note[0] }}/">{{ note[3] }}</a>
+                                     </td>
+                                    <td>
+                                     <a href="/notes/{{ note[0] }}/">{{ note[1] | custom_date }}</a>
+                                     </td>
+                                    <td>
+                                            <a href="/notes/{{ note[0] }}/">{{ tags[loop.index0] }}</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/notes/delete/{{ note[0] }}/"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </td>
+                                </tr>
+                            {%  endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="alert alert-danger">
+                       No tienes ningun servicio activo! Pide uno ya <a href="/notes/add/">aqui mismo</a>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="container" align="center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
+            {% for message in form.note_title.errors %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.note.errors %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.tags.errors %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
+
+          <form method="POST" action="/notes/add/">
+                <div class="col-lg-8 col-md-4 col-sm-12 col-xs-12" align="center">
+                    {{ form.csrf_token }}
+                    <h3> ID Cotización</h3>
+                    <br>
+                    {{ form.note_title(class='form-control no_borders' , value = cant, readonly="readonly") }}
+                    <br>
+                    {% if form.tags %}
+                    <h3>Tipo de Servicio</h3>
+                    <br>
+                    {{ form.tags(class='form-control no_borders') }}</h1>
+                    {% endif %}
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" align="center">
+                    <div class="inline-headers">
+                        <h3> Describe el servicio que deseas </h3>
+                    </div>
+                    <br>
+                    {{ form.note(class='form-control no_borders', cols="35", rows="20") }}
+                      <!-- {{ form.note(class='form-control no_borders', rows=15, cols="35") }}  -->
+                    <br>
+                    {{ form.submit(class='form-control no_borders btn btn-primary') }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

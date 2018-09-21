@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="container"  style="padding-top: 2%">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2> Has pedido cotizaciones para {{tam_notes}} servicios de tipo {{ tag_name }}</h2>
+            <br>
+            {% if username %}
+                {% if notes %}
+                    <table class="table table-hover table-bordered" style="background-color: white;">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Id cotización</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for note in notes %}
+                                <tr>
+                                    <td><a href="/notes/{{ note[0] }}/">{{ note[1] }}</a></td>
+                                </tr>
+                            {%  endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="alert alert-danger">
+                        You have no notes added under this tag!
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
