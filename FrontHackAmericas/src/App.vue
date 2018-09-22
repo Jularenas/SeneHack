@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    {{msg}}
-    <div id="map"></div>
+    <router-link to="/">Landing</router-link>
+    <hr>
+    <router-link to="/HelloWorld">World</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
