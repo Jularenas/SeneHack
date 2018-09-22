@@ -16,7 +16,7 @@ from utils.decorators import login_required
 from flask_pagedown import PageDown
 from flask import Markup
 import utils.functions as functions
-import utils.firebase as firebase
+import firebase
 import datetime
 import markdown
 import random
