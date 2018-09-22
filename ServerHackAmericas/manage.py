@@ -139,52 +139,16 @@ def logout():
     return login()
 
 
-@app.route("/notes/add/", methods=['GET', 'POST'])
+@app.route("/adycentes", methods=['POST'])
 @login_required
-def add_note():
-    '''
-        App for adding note
-    '''
-    if request.method == 'POST':
-        global cant
-        cant = cant+1
-
-    form = AddNoteForm()
-    form.tags.choices = functions.get_all_tags(session['id'])
-
-    if form.tags.choices is None:
-        form.tags = None
-
-    if form.validate_on_submit():
-        note_title = request.form['note_title']
-        note_markdown = form.note.data
-        note = Markup(markdown.markdown(note_markdown))
-
-        try:
-            tags = form.tags.data
-            tags = ','.join(tags)
-        except:
-            tags = None
-
-        functions.add_note(note_title, note, note_markdown, tags, session['id'])
-        print(tags)
-        if int(tags)%4 == 1 :
-            idpag = 2
-            print("Es electricista")
-        elif int(tags)%4 == 2:
-            idpag = 1
-            print("Es Cerrajeria")
-        elif int(tags)%4 == 3 :
-            idpag = 3
-            print("Es Remodelado")
-        elif int(tags)%4 == 0 :
-            idpag = 4
-            print("Es Limpieza")
-        else :
-            idpag = -1
-        functions.post_page_requiem(session['id'], idpag, note)
-        return render_template('cotizacion_hecha.html')
-    return render_template('add_note.html', form=form, username=session['username'], cant=cant)
+def adyacentes():
+    req_data=request.get_json()
+    origenLat=req_data['origen']['latitud']
+    origenLon=req_data['origen']['longitud']
+    destinoLat=req_data['destino']['latitud']
+    destinoLon=req_data['destino']['longitud']
+    radioSalida=req_data['radioSalida']
+    radioLlegada=req_data['radioLlegada']
 
 
 @app.route("/notes/<id>/")
