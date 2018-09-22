@@ -16,6 +16,7 @@ from utils.decorators import login_required
 from flask_pagedown import PageDown
 from flask import Markup
 import utils.functions as functions
+import firebase
 import datetime
 import markdown
 import random
@@ -30,6 +31,7 @@ pagedown = PageDown(app)
 parser = reqparse.RequestParser()
 app.secret_key = str(random.randint(1, 20))
 cant = 0
+user=None
 
 @app.route('/')
 def home_page():
@@ -39,7 +41,23 @@ def home_page():
     return 'HelloHack'
 
 
-
+@app.route('/login',methods=['POST'])
+def login():
+    if(request.method=='POST'):
+        req_data=request.get_json()
+        if(firebase.login(req_data)):
+            global user=req_data['usuario']
+            return True
+        return False
+    
+@app.route('/register',methods=['POST'])
+def register():
+    if(request.method=='POST'):
+        req_data=request.get_json()
+        if(firebase.login(req_data)):
+            global user=req_data['usuario']
+            return True
+        return firebase.register(req_data)
 
 @app.route('/adyacentes', methods=['POST'])
 def adyacentes():
@@ -53,10 +71,10 @@ def adyacentes():
         destinoLon=req_data['destino']['longitud']
         radioSalida=req_data['radioSalida']
         radioLlegada=req_data['radioLlegada']
-        origen={"latitud":origenLat,"longitud":origenLon}
-        destino={"latitud":destinoLat,"longitud":destinoLon}
-    
-    return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada))
+        origen={'latitud':origenLat,'longitud':origenLon}
+        destino={'latitud':destinoLat,'longitud':destinoLon}
+        firebase.createUser(origen,destino,user)		
+    return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada,firebase.getUsers()))
 
 
     

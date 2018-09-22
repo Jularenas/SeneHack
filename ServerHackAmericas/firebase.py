@@ -75,18 +75,22 @@ def login(user):
         if(doc.to_dict()['passwd']!=passwd):
             return False
     return True
-#usuario={}
-#usuario['usuario']="s.guzmanm"
-#usuario['passwd']='test'
-#usuario['celular']='3017912608'
-#register(usuario)
-#print(login(usuario))
-origen={}
-origen['longitud']=12
-origen['latitud']=12
-destino={}
-destino['longitud']=12
-destino['latitud']=12
-login="s.guzmanm"
-createUser(origen,destino,login)
+
+def testData():
+    usuario['usuario']="s.guzmanm"
+    usuario['passwd']='test'
+    usuario['celular']='3017912608'
+    register(usuario)
+    print(login(usuario))
+    origen={}
+    origen['longitud']=12
+    origen['latitud']=12
+    destino={}
+    destino['longitud']=12
+    destino['latitud']=12
+    userLogin="s.guzmanm"
+    createUser(origen,destino,userLogin)
+
+usuario={}
+
 

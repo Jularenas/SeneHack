@@ -18,16 +18,26 @@ def distance(origin, destination):
 
     return d
 
-def get10NearToRadius(location1,location2,radius1,radius2):
+def get10NearToRadius(location1,location2,radius1,radius2,users):
     nears=[]
-    with open(rootdir, 'r') as f:
-        rutas = json.load(f)
-        for i in range(len(rutas)):
-            if radius1>=distance(location1,rutas[i]['origen']):
-                if radius2>=distance(location2,rutas[i]['destino']):
-                    nears.append(rutas[i])
-                    if len(nears)==10:
-                        print('break')
-                        break
+    if users!=None:
+        readJsonData(users,nears,location1,location2,radius1,radius2)
+        print("After firebase",len(nears))
+    if(len(nears)<10):
+        with open(rootdir, 'r') as f:
+            readJsonData(f,nears,location1,location2,radius1,radius2)
     return nears
 
+def readJsonData(f,nears,location1,location2,radius1,radius2):
+    rutas = json.load(f)
+    for i in range(len(rutas)):
+        if radius1>=distance(location1,rutas[i]['origen']):
+            if radius2>=distance(location2,rutas[i]['destino']):
+                nears.append(rutas[i])
+                print("Route added ",str(rutas[i]))
+                if len(nears)==10:
+                    print('break')
+                    break
+
+
+print(str(get10NearToRadius({"latitud": 4.5836411, "longitud": -74.093567},{"latitud": 4.5839411, "longitud": -74.093667},10,5),None))
