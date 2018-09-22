@@ -5,6 +5,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import datetime
 import hashlib
+import json
 
 
 cred = credentials.Certificate("senehack-firebase-adminsdk-lnk8g-fbd99ef620.json")
