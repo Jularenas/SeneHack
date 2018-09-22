@@ -2,6 +2,7 @@ import os
 import hashlib
 import math
 import json
+import ast
 
 rootdir =os.path.dirname(os.path.abspath(__file__))+'/unificados.json'
 
@@ -25,16 +26,16 @@ def get10NearToRadius(location1,location2,radius1,radius2,users):
         print("After firebase",len(nears))
     if(len(nears)<10):
         with open(rootdir, 'r') as f:
-            readJsonData(f,nears,location1,location2,radius1,radius2)
+            rutas = json.load(f)
+            readJsonData(rutas,nears,location1,location2,radius1,radius2)
     return nears
 
-def readJsonData(f,nears,location1,location2,radius1,radius2):
-    rutas = json.load(f)
+def readJsonData(rutas,nears,location1,location2,radius1,radius2):
+    print(rutas)
     for i in range(len(rutas)):
         if radius1>=distance(location1,rutas[i]['origen']):
             if radius2>=distance(location2,rutas[i]['destino']):
                 nears.append(rutas[i])
-                print("Route added ",str(rutas[i]))
                 if len(nears)==10:
                     print('break')
                     break
