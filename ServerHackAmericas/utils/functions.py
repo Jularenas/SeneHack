@@ -31,4 +31,3 @@ def get10NearToRadius(location1,location2,radius1,radius2):
                         break
     return nears
 
-print(str(get10NearToRadius({"latitud": 4.5836411, "longitud": -74.093567},{"latitud": 4.5839411, "longitud": -74.093667},10,5)))

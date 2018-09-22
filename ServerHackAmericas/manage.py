@@ -19,6 +19,7 @@ import utils.functions as functions
 import datetime
 import markdown
 import random
+import json
 from flask_cors import CORS
 #import utils.seleniumTest 
 
@@ -42,8 +43,10 @@ def home_page():
 
 @app.route('/adyacentes', methods=['POST'])
 def adyacentes():
+    print(request.method)
     if(request.method=='POST'):
-        req_data=request.get_json()
+        req_data=request.get_json(force=True)
+        print(req_data)
         origenLat=req_data['origen']['latitud']
         origenLon=req_data['origen']['longitud']
         destinoLat=req_data['destino']['latitud']
