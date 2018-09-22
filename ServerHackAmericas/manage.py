@@ -30,6 +30,7 @@ pagedown = PageDown(app)
 parser = reqparse.RequestParser()
 app.secret_key = str(random.randint(1, 20))
 cant = 0
+user=None
 
 @app.route('/')
 def home_page():
@@ -39,7 +40,23 @@ def home_page():
     return 'HelloHack'
 
 
-
+@app.route('/login',methods=['POST'])
+def login():
+    if(request.method=='POST'):
+        req_data=request.get_json()
+        if(firebase.login(req_data)):
+            global user=req_data['usuario']
+            return True
+        return False
+    
+@app.route('/register',methods=['POST'])
+def register():
+    if(request.method=='POST'):
+        req_data=request.get_json()
+        if(firebase.login(req_data)):
+            global user=req_data['usuario']
+            return True
+        return firebase.register(req_data)
 
 @app.route('/adyacentes', methods=['POST'])
 def adyacentes():
@@ -53,8 +70,8 @@ def adyacentes():
         radioLlegada=req_data['radioLlegada']
         origen={'latitud':origenLat,'longitud':origenLon}
         destino={'latitud':destinoLat,'longitud':destinoLon}
-        firebase.createUser(origen,destino)		
-    return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada))
+        firebase.createUser(origen,destino,user)		
+    return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada,firebase.getUsers()))
 
 
     
