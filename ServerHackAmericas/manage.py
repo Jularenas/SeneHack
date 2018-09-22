@@ -19,15 +19,16 @@ import utils.functions as functions
 import datetime
 import markdown
 import random
+from flask_cors import CORS
 #import utils.seleniumTest 
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 pagedown = PageDown(app)
 parser = reqparse.RequestParser()
 app.secret_key = str(random.randint(1, 20))
 cant = 0
-
 
 @app.route('/')
 def home_page():
@@ -39,22 +40,22 @@ def home_page():
 
 
 
-
-
-@app.route("/adycentes", methods=['POST'])
-@login_required
+@app.route('/adyacentes', methods=['POST'])
 def adyacentes():
-    req_data=request.get_json()
-    origenLat=req_data['origen']['latitud']
-    origenLon=req_data['origen']['longitud']
-    destinoLat=req_data['destino']['latitud']
-    destinoLon=req_data['destino']['longitud']
-    radioSalida=req_data['radioSalida']
-    radioLlegada=req_data['radioLlegada']
-    origen={"latitud":origenLat,"longitud":origenLon}
-    destino={"latitud":destinoLat,"longitud":destinoLon}
+    if(request.method=='POST'):
+        req_data=request.get_json()
+        origenLat=req_data['origen']['latitud']
+        origenLon=req_data['origen']['longitud']
+        destinoLat=req_data['destino']['latitud']
+        destinoLon=req_data['destino']['longitud']
+        radioSalida=req_data['radioSalida']
+        radioLlegada=req_data['radioLlegada']
+        origen={"latitud":origenLat,"longitud":origenLon}
+        destino={"latitud":destinoLat,"longitud":destinoLon}
     
-    return utils.functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada)
+    return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada))
+
+
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
