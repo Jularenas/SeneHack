@@ -5,7 +5,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import datetime
 
-cred = credentials.Certificate("senehack-firebase-adminsdk-lnk8g-fbd99ef620.json")
+cred = credentials.Certificate("C:/Users/Jularenas/Desktop/Hackamericas/SeneHack/ServerHackAmericas/utils/senehack-firebase-adminsdk-lnk8g-fbd99ef620.json")
 firebase_admin.initialize_app(cred)
 
 def getUsers():
