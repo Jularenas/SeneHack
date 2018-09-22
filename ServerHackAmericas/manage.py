@@ -16,7 +16,6 @@ from utils.decorators import login_required
 from flask_pagedown import PageDown
 from flask import Markup
 import utils.functions as functions
-import firebase
 import datetime
 import markdown
 import random
@@ -54,9 +53,9 @@ def adyacentes():
         destinoLon=req_data['destino']['longitud']
         radioSalida=req_data['radioSalida']
         radioLlegada=req_data['radioLlegada']
-        origen={'latitud':origenLat,'longitud':origenLon}
-        destino={'latitud':destinoLat,'longitud':destinoLon}
-        firebase.createUser(origen,destino)		
+        origen={"latitud":origenLat,"longitud":origenLon}
+        destino={"latitud":destinoLat,"longitud":destinoLon}
+    
     return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada))
 
 
