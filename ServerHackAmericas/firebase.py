@@ -53,8 +53,9 @@ def register(user):
     data['celular']=user['celular']
     db = firestore.client()
     if(db.collection(u'datosPersonales').document(usuario) is None):
-        return
+        return str(False)
     db.collection(u'datosPersonales').document(usuario).set(data)
+    return str(True)
 
 def login(user):
     usuario=user['usuario']
@@ -66,14 +67,14 @@ def login(user):
     db = firestore.client()
     doc_ref=db.collection(u'datosPersonales').document(usuario)
     if(doc_ref is None):
-        return False
+        return str(False)
     else:
         doc=doc_ref.get()
         print(doc)
         print(doc.to_dict())
         if(doc.to_dict()['passwd']!=passwd):
-            return False
-    return True
+            return str(False)
+    return str(True)
 
 def testData():
     usuario['usuario']="s.guzmanm"

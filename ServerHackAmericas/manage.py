@@ -45,18 +45,12 @@ def home_page():
 def login():
     if(request.method=='POST'):
         req_data=request.get_json()
-        if(firebase.login(req_data)):
-            global user=req_data['usuario']
-            return True
-        return False
+        return firebase.login(req_data)
     
 @app.route('/register',methods=['POST'])
 def register():
     if(request.method=='POST'):
         req_data=request.get_json()
-        if(firebase.login(req_data)):
-            global user=req_data['usuario']
-            return True
         return firebase.register(req_data)
 
 @app.route('/adyacentes', methods=['POST'])
@@ -71,6 +65,7 @@ def adyacentes():
         destinoLon=req_data['destino']['longitud']
         radioSalida=req_data['radioSalida']
         radioLlegada=req_data['radioLlegada']
+        user=req_data['user']
         origen={'latitud':origenLat,'longitud':origenLon}
         destino={'latitud':destinoLat,'longitud':destinoLon}
         firebase.createUser(origen,destino,user)		
