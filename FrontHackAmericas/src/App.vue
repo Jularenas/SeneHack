@@ -42,7 +42,7 @@ export default {
           longitud: -74.065253
         },
         radioSalida: 20,
-        radioLlegada: 20        
+        radioLlegada: 20
       })
     }).then(res => res.text()).then(text =>{
         const parsed = text.replace(/'/g, '"');
