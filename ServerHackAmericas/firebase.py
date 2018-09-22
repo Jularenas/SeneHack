@@ -57,7 +57,6 @@ def register(user):
     db.collection(u'datosPersonales').document(usuario).set(data)
 
 def login(user):
-    data={}
     usuario=user['usuario']
     passwd=user['passwd'].encode('utf-8')
     m = hashlib.md5()
