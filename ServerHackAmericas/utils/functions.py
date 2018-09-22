@@ -3,7 +3,7 @@ import hashlib
 import math
 import json
 
-rootdir ='C:/Users/rtb15/Desktop/HackAmericas/SeneHack/ServerHackAmericas/utils/unificados.json'
+rootdir =os.path.dirname(os.path.abspath(__file__))+'/unificados.json'
 
 def distance(origin, destination):
     lat1, lon1 = origin['latitud'],origin['longitud']
@@ -17,3 +17,18 @@ def distance(origin, destination):
     d = radius * c
 
     return d
+
+def get10NearToRadius(location1,location2,radius1,radius2):
+    nears=[]
+    with open(rootdir, 'r') as f:
+        rutas = json.load(f)
+        for i in range(len(rutas)):
+            if radius1>=distance(location1,rutas[i]['origen']):
+                if radius2>=distance(location2,rutas[i]['destino']):
+                    nears.append(rutas[i])
+                    if len(nears)==10:
+                        print('break')
+                        break
+    return nears
+
+print(str(get10NearToRadius({"latitud": 4.5836411, "longitud": -74.093567},{"latitud": 4.5839411, "longitud": -74.093667},10,5)))
