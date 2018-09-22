@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <img id="foto_ciudad" v-bind:src="require('@/assets/Centro_internacional.png')" alt="Fondo">
     <div id="fondo"></div>
     <img id="foto" v-bind:src="require('@/assets/captura.png')" >
@@ -16,11 +15,8 @@
 </template>
 
 <script>
-import Header from '@/components/Base/Header'
 export default {
-  components:{
-    Header
-  }
+  
 }
 </script>
 

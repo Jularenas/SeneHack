@@ -55,10 +55,8 @@ def register():
 
 @app.route('/adyacentes', methods=['POST'])
 def adyacentes():
-    print(request.method)
     if(request.method=='POST'):
         req_data=request.get_json(force=True)
-        print(req_data)
         origenLat=req_data['origen']['latitud']
         origenLon=req_data['origen']['longitud']
         destinoLat=req_data['destino']['latitud']

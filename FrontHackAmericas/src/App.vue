@@ -1,12 +1,18 @@
 <template>
   <div id="app">
+    <Header></Header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Base/Header'
+
 export default {
   name: "app",
+  components:{
+    Header
+  },
   data() {
     return {
       msg: "Welcome to Your Vue.js App"
@@ -39,7 +45,7 @@ export default {
           longitud: -74.065253
         },
         radioSalida: 20,
-        radioLlegada: 20        
+        radioLlegada: 20
       })
     }).then(res => res.text()).then(text =>{
         const parsed = text.replace(/'/g, '"');
@@ -53,13 +59,20 @@ export default {
 </script>
 
 <style>
+html, body{
+  height: 100vh;
+  width: 100vw;
+  
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 0px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 h1,
