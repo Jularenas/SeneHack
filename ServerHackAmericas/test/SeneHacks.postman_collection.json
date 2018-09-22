@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "3485dadb-a959-49bd-b64b-9ebdc80cdc15",
+		"name": "SeneHacks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"s.guzmanm\",\n\t\"passwd\":\"test\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"s.guzmanm\",\n\t\"passwd\":\"test\",\n\t\"celular\":\"3017912608\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/register",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adyacentes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"origen\":{\n\t\t\"latitud\":4.58364,\n\t\t\"longitud\":-74.0935\n\t},\n\t\"destino\":{\n\t\t\"latitud\":4.5839411,\n\t\t\"longitud\":-74.0936\n\t},\n\t\"radioSalida\":10,\n\t\"radioLlegada\":5,\n\t\"user\":\"s.guzmanm\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/adyacentes",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adyacentes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
