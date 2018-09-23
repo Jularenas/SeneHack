@@ -34,7 +34,7 @@ export default {
           this.$router.push({name: "Explore", params: {user: this.user}});
         }
         else if (!test)
-          alert("El usuario o la clave son incorrectos");
+          console.log('Failed login') && alert("El usuario o la clave son incorrectos");
       });
       
     }

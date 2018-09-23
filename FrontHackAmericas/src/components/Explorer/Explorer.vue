@@ -42,7 +42,7 @@ export default {
     var borrar = this.user;
     console.log(borrar);
     window.addEventListener('beforeunload', function (event) {
-      const url = 'http://157.253.222.204:5000/closed/'+borrar;
+      const url = 'https://p2poolserver.herokuapp.com/closed/'+borrar;
       const Http=new XMLHttpRequest();
       Http.open('DELETE', url, false);
       Http.send();

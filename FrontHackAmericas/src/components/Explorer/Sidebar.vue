@@ -118,7 +118,7 @@ export default {
     },
     queryAdjacencies() {
       var este = this;
-      fetch("http://157.253.222.183:5000/adyacentes", {
+      fetch("https://p2poolserver.herokuapp.com/adyacentes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

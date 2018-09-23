@@ -123,7 +123,7 @@ export default {
     },
     queryAdjacencies() {
       const este = this;
-      fetch("http://157.253.222.204:5000/adyacentesRT/" + this.searchMode, {
+      fetch("https://p2poolserver.herokuapp.com/adyacentesRT/" + this.searchMode, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
