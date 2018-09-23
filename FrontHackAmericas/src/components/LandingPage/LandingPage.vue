@@ -3,7 +3,7 @@
     <img id="foto_ciudad" v-bind:src="require('@/assets/Centro_internacional.png')" alt="Fondo">
     <div id="fondo"></div>
     <div>
-      <img id="foto" v-bind:src="require('@/assets/captura.png')" >
+      <img id="foto" v-bind:src="require('@/assets/demo.png')" >
       <h2 id="slogan">La forma mas amigable de transportarse</h2>
       <h3>Consigue transporte a cualquier hora y lugar en tiempo real o planea tus viajes de una forma eficiente, comoda y barata en el medio de transporte de tu elección</h3>
     </div>
@@ -68,6 +68,8 @@ export default {
     position: absolute;
     right: 8%;
     top: 25%;
+    width: 40vw;
+    height: 50vh;
   }
 
   #slogan{
