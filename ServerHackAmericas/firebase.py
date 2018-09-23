@@ -32,6 +32,8 @@ def getUsers():
     return unificados
 
 def createUser(origen,destino,login):
+    if(origen is None or destino is None or login is None):
+        return
     data={}
     data['fechacambio']=str(datetime.datetime.now())
     data['longitudInicial']=origen['longitud']
@@ -44,6 +46,9 @@ def createUser(origen,destino,login):
     db.collection(u'usuarios').document().set(data)
 
 def register(user):
+    if(user.get('usuario') is None or user.get('passwd') is None or
+    user.get('celular') is None or user.get('nombre') is None):
+        return str(False)
     data={}
     usuario=user['usuario']
     passwd=user['passwd'].encode('utf-8')
@@ -62,6 +67,8 @@ def register(user):
         return str(True)
 
 def login(user):
+    if(user.get('usuario') is None or user.get('password') is None):
+        return str(False)
     usuario=user['usuario']
     passwd=user['passwd'].encode('utf-8')
     m = hashlib.md5()
@@ -102,3 +109,5 @@ def testData():
     destino['latitud']=12
     userLogin="s.guzmanm"
     createUser(origen,destino,userLogin)
+usuario={}
+print(register(usuario))
