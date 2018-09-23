@@ -48,7 +48,7 @@
     />
     <Boton
       @click="miMetodo"
-      nombre="Tiempo Real"
+      nombre="Ir a búsqueda en tiempo real"
     />
     <div class="results-container">
       <Result v-for="result in results"
@@ -87,6 +87,7 @@ export default {
   data() {
     return {
       options: {
+        value: 300,
         width: "100%", // 组件宽度
         height: 8,
         direction: "horizontal", // 组件方向
@@ -132,31 +133,32 @@ export default {
             latitud: this.end.lat,
             longitud: this.end.lng
           },
-          radioSalida: this.startRadius,
-          radioLlegada: this.endRadius
+          radioSalida: this.startRadius/1000,
+          radioLlegada: this.endRadius/1000
         })
       })
         .then(res => res.text())
         .then(json => {
-          const parsed = json.replace(/'/g, '"');
-          console.log("parsed: ", parsed);
+          const parsed = JSON.parse(json.replace(/'/g, '"'));
           este.onAdjacencyQuery(parsed);
         });
     },
     miMetodo(){
-      this.$router.push('RealTime')
+      this.$router.push({name: 'RealTime', params: this.$route.params});
     }
   }
 };
 </script>
 
 <style scoped>
+
 .sidebar-container {
   display: flex;
   flex: 1.5;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow: auto;
 }
 
 .sidebar-container h1 {
@@ -221,4 +223,12 @@ label {
 .icons-container .icon-container .selected-icon:hover {
   background-color: rgb(79, 153, 153);
 }
+
+.results-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 4px;
+}
+
 </style>

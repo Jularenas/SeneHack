@@ -21,14 +21,43 @@
         v-bind="options"
       />
     </div>
-    <select name="category" id="categoty">
-      <option value="ciclas">ciclas</option>
-      <option value="taxi">taxi</option>
-      <option value="carro">carro</option>
-    </select>
+     <strong> Me gustaría irme en:</strong>
+    <div class='icons-container'>
+      <div class="icon-container">
+        <label>Bicicleta</label>
+        <i
+          @click="() => selectMode('cicla')" 
+          :class="['material-icons', searchMode === 'cicla' ? 'selected-icon' : {} ]">
+          directions_bike
+        </i>
+      </div>
+      <div class="icon-container">
+        <label>Taxi / Uber</label>
+        <i
+          @click="() => selectMode('taxi')" 
+          :class="['material-icons', searchMode === 'taxi' ? 'selected-icon' : {} ]">
+          local_taxi
+        </i>
+      </div>
+      <div class="icon-container">
+        <label>Carro privado</label>
+        <i
+          @click="() => this.selectMode('carro')" 
+          :class="['material-icons', searchMode === 'carro' ? 'selected-icon' : {} ]">
+          directions_car
+        </i>
+      </div>
+
+    </div>
+
     <Boton
       @click="queryAdjacencies"
       nombre="Buscar"
+    />
+
+    <Boton
+      @click="() => $router.push('Explore')"
+      nombre="Ir a búsqueda por 'pooling' frecuente"
     />
 
     <div class="results-container">
@@ -62,13 +91,14 @@ export default {
     end: Object,
     onStartRadiusChange: Function,
     onEndRadiusChange: Function,
-    searchMode: Array,
     onAdjacencyQuery: Function,
     results: Array
   },
   data() {
     return {
+      searchMode: '',
       options: {
+        value: 300,
         width: "100%", // 组件宽度
         height: 8,
         direction: "horizontal", // 组件方向
@@ -89,23 +119,16 @@ export default {
   },
   methods: {
     selectMode(mode) {
-      const index = this.searchMode.indexOf(mode);
-      if (index !== -1) {
-        //The item is on the list
-        this.searchMode.splice(index, 1);
-      } else {
-        this.searchMode.push(mode);
-      }
+      this.searchMode = mode;
     },
     queryAdjacencies() {
-      var este = this;
-      fetch("http://157.253.222.183:5000/adyacentes", {
+      fetch("http://157.253.222.204:5000/adyacentesRT/" + this.searchMode, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          user: "julian",
+          user: this.$route.params.user,
           origen: {
             latitud: this.start.lat,
             longitud: this.start.lng
@@ -120,11 +143,13 @@ export default {
       })
         .then(res => res.text())
         .then(json => {
-          const parsed = json.replace(/'/g, '"');
+          const parsed = JSON.parse(json.replace(/'/g, '"'));
           console.log("parsed: ", parsed);
           este.onAdjacencyQuery(parsed);
         });
     }
+  },
+  mounted(){
   }
 };
 </script>
@@ -140,6 +165,10 @@ export default {
 
 .sidebar-container h1 {
   font-size: 1.92rem;
+}
+
+.sidebar-container strong{
+  font-size: 1.4rem;
 }
 
 label {
@@ -160,7 +189,8 @@ label {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-end;
+  margin-top: 16px;
   width: 100%;
 }
 
@@ -176,7 +206,7 @@ label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   width: 60%;
 }
 

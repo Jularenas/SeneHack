@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :onLogin="this.onLogIn"></Header>
+    <Header :loggedIn="loggedIn" :onLogin="onLogIn" :onRegister="onRegister"></Header>
     <router-view></router-view>
   </div>
 </template>
@@ -14,9 +14,12 @@ import {adyacentes} from './utils.js'
 export default {
   name: "app",
   methods:{
-    onLogIn(){
-        document.getElementById('log').style.display='none';
-        
+    onLogIn(event){
+      this.user = event;
+      this.loggedIn = true;
+    },
+    onRegister(){
+      this.onRegister = true;
     }
   },
   components:{
@@ -24,29 +27,10 @@ export default {
   },
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+      loggedIn: false,
+      user: '',
+      inRegister: false
     };
-  },
-  mounted() {
-
-    /*
-    //register('ja.manrique','ja.manrique.00','3131313131');
-    //login('ja.manrique','ja.manrique.00');
-    adyacentes('ja.manrique',4.5836411, -74.093567,4.5839411, -74.093667,10,5,);
-
-    var mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
-    mapboxgl.accessToken =
-      "pk.eyJ1Ijoic2d1em1hbm0iLCJhIjoiY2pleXB3aW45MDkxZDJxcDZzY3FnaTh2ZCJ9.B7iUjwcIAXVEmjQx6I3iEA";
-    var map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v10"
-    });
-    // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl());
-    */
-
-    const esto = this;
-    adyacentes('s.guzmanm', 4.5836411, -74.093567, 4.5839411, -74.093667,10,5);
   }
 };
 
@@ -54,10 +38,16 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 html, body{
   height: 100vh;
   width: 100vw;
 }
+
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
