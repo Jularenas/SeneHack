@@ -1,5 +1,6 @@
 <template>
   <div class="explorer-container">
+    <p>HOLAAAAAAA: {{email}}</p>
       <Sidebar 
         :startRadius="startRadius"
         :endRadius="endRadius"
@@ -36,15 +37,23 @@ export default {
     Map,
     Sidebar
   },
-  mounted(){
-    window.onbeforeunload = closingCode;
-    function closingCode(){
-      const url = 'http://157.253.222.183:5000/closed'+this.email;
+  methods:{
+    handler: function handler(event) {
+      const url = 'http://157.253.222.204:5000/closed/'+this.email;
       const Http=new XMLHttpRequest();
       Http.open('DELETE', url, false);
       Http.send();
       return null;
-}
+    }
+  },
+  created: function () {
+    window.addEventListener('beforeunload', function (event) {
+      const url = 'http://157.253.222.204:5000/closed/'+this.email;
+      const Http=new XMLHttpRequest();
+      Http.open('DELETE', url, false);
+      Http.send();
+      return null;
+    }, false)
   },
   data(){
     return{
