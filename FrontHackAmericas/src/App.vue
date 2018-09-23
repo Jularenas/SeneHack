@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header :onLogin="this.onLogIn"></Header>
     <router-view></router-view>
   </div>
 </template>
@@ -10,6 +10,11 @@ import Header from '@/components/Base/Header'
 
 export default {
   name: "app",
+  methods:{
+    onLogIn(){
+        document.getElementById('log').style.display='none';
+    }
+  },
   components:{
     Header
   },

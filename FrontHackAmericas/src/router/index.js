@@ -12,7 +12,8 @@ export default new Router({
     {
       path: '/',
       name: 'LandingPage',
-      component: LandingPage
+      component: LandingPage,
+      props: true
     },
     {
       path: '/Explore',

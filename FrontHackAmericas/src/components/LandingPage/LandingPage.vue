@@ -5,7 +5,7 @@
     <img id="foto" v-bind:src="require('@/assets/captura.png')" >
     <h2 id="slogan">La forma mas amigable de transportarse</h2>
     <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend justo a pulvinar laoreet. Mauris varius sed enim ac accumsan. Nulla id tellus pharetra, vestibulum ante in, tempor mi. Donec at velit sed eros auctor tincidunt. Curabitur sed tincidunt sem. Mauris tempus ligula neque. Vivamus vel vestibulum quam.</h3>
-   <button id="registro">Registrarse</button>
+   <button id="registro"><h4> Registrarse</h4></button>
     <div id="redes">
       <i class="fab fa-facebook-square"></i>
       <i class="fab fa-twitter-square"></i>
@@ -82,5 +82,9 @@ export default {
   }
   #registro{
     position: relative;
+    top: 100px;
+    width: 300px;
+    height: 150px;
+    right: 320px;
   }
 </style>
