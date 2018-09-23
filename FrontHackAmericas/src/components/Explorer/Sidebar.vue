@@ -43,13 +43,14 @@
       </div>
     </div>
     <Boton
-      @click="this.queryAdjacencies"
+      @click="queryAdjacencies"
       nombre="Buscar"
     />
 
     <div class="results-container">
       <Result v-for="result in results"
-        :key="result.date"
+        :key="result.fecha_calculo"
+        :result='result'
       />
     </div>
 
@@ -61,7 +62,7 @@ import BaseInput from "@/components/Base/Input";
 import Boton from "@/components/Base/Boton";
 import Slider from "vue-slider-component";
 import Result from "./Result";
-import {adyacentes} from '@/utils'
+import { adyacentes } from "@/utils";
 
 export default {
   components: {
@@ -77,7 +78,9 @@ export default {
     end: Object,
     onStartRadiusChange: Function,
     onEndRadiusChange: Function,
-    searchMode: Array
+    searchMode: Array,
+    onAdjacencyQuery: Function,
+    results: Array
   },
   data() {
     return {
@@ -97,8 +100,7 @@ export default {
         useKeyboard: false, // 是否使用键盘控制
         reverse: false, // 是否反向组件
         speed: 0.5 // 动画速度
-      },
-      results:[]
+      }
     };
   },
   methods: {
@@ -112,7 +114,32 @@ export default {
       }
     },
     queryAdjacencies() {
-      console.log(this.$route.params);
+      var este = this;
+      fetch("http://157.253.222.183:5000/adyacentes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user: "julian",
+          origen: {
+            latitud: this.start.lat,
+            longitud: this.start.lng
+          },
+          destino: {
+            latitud: this.end.lat,
+            longitud: this.end.lng
+          },
+          radioSalida: this.startRadius,
+          radioLlegada: this.endRadius
+        })
+      })
+        .then(res => res.text())
+        .then(json => {
+          const parsed = json.replace(/'/g, '"');
+          console.log("parsed: ", parsed);
+          este.onAdjacencyQuery(parsed);
+        });
     }
   }
 };

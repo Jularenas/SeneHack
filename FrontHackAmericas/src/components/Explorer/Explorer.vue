@@ -8,6 +8,10 @@
         :onStartRadiusChange="radius => this.startRadius = radius"
         :onEndRadiusChange="radius => this.endRadius = radius"
         :searchMode="searchMode"
+        :onAdjacencyQuery="(queryRes) => {
+          this.results = queryRes; 
+        }"
+        :results='this.results'
       />
       <Map 
         :startRadius="startRadius"
@@ -38,7 +42,8 @@ export default {
       end: {lat: 4.650783, lng: -74.098771},
       startRadius: 100,
       endRadius: 100,
-      searchMode:[]
+      searchMode:[],
+      results: []
     }
   }
 };

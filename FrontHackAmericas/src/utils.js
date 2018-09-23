@@ -33,14 +33,14 @@ export function register(name,username,passwd,cellphone)
 }
 
  export  function adyacentes(username,origenLat,origenLon,destinoLat
-,destinoLon,radioSalida,radioLlegada) {
+,destinoLon,radioSalida,radioLlegada, cbk) {
     console.log("ADYACENTES");
     Http.open('POST',url+'/adyacentes',true);
     Http.setRequestHeader('Content-Type',"application/json");
     Http.setRequestHeader('Access-Control-Request-Method',"POST");
     Http.onreadystatechange=function(){
         console.log(this.responseText);
-        return this.responseText;
+        cbk(this.responseText);
     }
     Http.send(JSON.stringify({
         'user':username,

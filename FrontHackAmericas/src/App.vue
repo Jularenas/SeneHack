@@ -46,7 +46,7 @@ export default {
     */
 
     const esto = this;
-    adyacentes('s.guzmanm', 4.5836411, -74.093567, 4.5839411, -74.093667,10,5,);
+    adyacentes('s.guzmanm', 4.5836411, -74.093567, 4.5839411, -74.093667,10,5);
   }
 };
 
