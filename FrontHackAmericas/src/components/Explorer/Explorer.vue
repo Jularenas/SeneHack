@@ -17,10 +17,6 @@
         :onStartDrag="location => this.start = location.latLng"
         :onEndDrag="location => this.end = location.latLng"
       />
-
-<!-- :onStartChange="newStart => this.start = newStart"
-        :onEndChange="" -->
-
   </div>
 </template>
 
