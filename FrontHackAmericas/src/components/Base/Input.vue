@@ -11,14 +11,6 @@
     name: 'Input',
     props:{
       placeholder: String
-    },
-    data() {
-      return{
-        placeholder: 'Otra'
-      }
-    },
-    created(){
-      this.placeholder = 'Otra';
     }
   }
 </script>

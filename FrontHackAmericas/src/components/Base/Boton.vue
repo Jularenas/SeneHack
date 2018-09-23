@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <section class="buttons">
+  <div class="button-container">
       <button class="draw meet">{{nombre}}</button>
-    </section>
   </div>
 </template>
 
@@ -16,6 +14,11 @@
 </script>
 
 <style lang="scss" scoped>
+
+.button-container{
+  cursor: pointer;
+}
+
 $background: #fefefe;
 $text: #4b507a;
 
@@ -29,8 +32,8 @@ button {
   background: none;
   border: 0;
   box-sizing: border-box;
-  margin: 1em;
-  padding: 1em 2em;
+  margin: 0.9em;
+  padding: 0.8em 1.5em;
   box-shadow: inset 0 0 0 2px $red;
   color: $red;
   font-size: inherit;
