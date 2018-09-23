@@ -3,7 +3,7 @@
     <form>
       <input v-if="tipo==='pass'"  :maxlength=cantidad type="password" class="question textarea" id="nme" required autocomplete="off" v-on="listeners" v-bind="$attrs"/>
       <input v-else-if="tipo==='cel'" :maxlength=cantidad type="number" class="question textarea" id="nme" required autocomplete="off" v-on="listeners" v-bind="$attrs"/>
-      <input v-else type="text" :maxlength=cantidad class="question textarea" id="nme" required autocomplete="off" v-on="listeners" v-bind="$attrs"/>
+      <input v-else :maxlength=cantidad class="question textarea" id="nme" required autocomplete="off" v-on="listeners" v-bind="$attrs"/>
       <label for="nme"><span>{{placeholder}}</span></label>
     </form>
   </div>

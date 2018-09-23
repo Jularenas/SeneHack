@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :onLogin="this.onLogIn"></Header>
+    <Header :loggedIn="loggedIn" :onLogin="onLogIn"></Header>
     <router-view></router-view>
   </div>
 </template>
@@ -15,8 +15,7 @@ export default {
   name: "app",
   methods:{
     onLogIn(){
-        document.getElementById('log').style.display='none';
-        
+      this.loggedIn = true;
     }
   },
   components:{
@@ -24,7 +23,7 @@ export default {
   },
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+      loggedIn: false
     };
   },
   mounted() {
