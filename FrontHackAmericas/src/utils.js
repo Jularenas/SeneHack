@@ -15,13 +15,13 @@ export function login(username,passwd,callback)
       }))
 }
 
-export function register(name,username,passwd,cellphone)
+export function register(name,username,passwd,cellphone,fun)
 {
     Http.open('POST',url+'/register',true);
     Http.setRequestHeader('Content-Type',"application/json");
     Http.onreadystatechange=function(){
         console.log(this.responseText);
-        return this.responseText;
+         fun(this.responseText);
     }
     Http.send(JSON.stringify({
         'nombre':name,

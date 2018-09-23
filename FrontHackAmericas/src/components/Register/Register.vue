@@ -1,24 +1,31 @@
 <template>
     <div class="registro">
       <div class="recuadro">
-        <form class="form-registro" action="index.html" method="post">
-          <Input placeholder="Nombre" class="nombre-i"></Input>
-          <Input placeholder="Email" class="email-i"></Input>
-          <Input placeholder="Password" class="pass-i"></Input>
-          <Input placeholder="Celular" class="celular-i"></Input>
-          <Boton nombre="Registrarse" class="btn-registrar"></Boton>
-        </form>
+          <BaseInput placeholder="Nombre" v-model="name" pass="False" cantidad=50 class="nombre-i"></BaseInput>
+          <BaseInput placeholder="Email" v-model="email" pass="False" cantidad=50 class="email-i"></BaseInput>
+          <BaseInput placeholder="Password" v-model="pass" tipo="pass" cantidad=50 class="pass-i"></BaseInput>
+          <BaseInput placeholder="Celular" v-model="cell" tipo="cel" cantidad=10 class="celular-i"></BaseInput>
+          <Boton nombre="Registrarse" pass="False" class="btn-registrar" v-on:click="miMetodo"></Boton>
       </div>
     </div>
 </template>
 
 <script>
 import Boton from '@/components/Base/Boton'
-import Input from '@/components/Base/Input'
+import BaseInput from '@/components/Base/Input'
+import {register} from '@/utils.js';
 export default {
   components:{
     Boton,
-    Input
+    BaseInput
+  },
+  methods: {
+    miMetodo() {
+      register(this.name, this.email, this.pass, this.cell,(test)=>{
+          this.$router.push('Explore');
+      });
+      
+    }
   }
 }
 </script>
@@ -32,6 +39,7 @@ export default {
   }
 
   .registro{
+    
     margin-left: auto;
     width: 65%;
     margin-top: 95px;
