@@ -4,15 +4,14 @@
       Encuentra parceros:
     </h1>
 
-    <BaseInput placeholder="Radio de búsqueda (inicio)"/>
+    <label> "Radio de búsqueda (inicio)" </label>
 
     <div class="slider-container">
       <Slider 
-        v-model="startRadius"
+        @input="event => this.onStartRadiusChange(event)"
         v-bind="options"
       />
     </div>
-    <BaseInput />
 
     <label>Radio de búsqueda (final)</label>
 
@@ -41,10 +40,16 @@ export default {
     BaseInput,
     Slider
   },
+  props: {
+    startRadius: Number,
+    endRadius: Number,
+    start: Object,
+    end: Object,
+    onStartRadiusChange: Function,
+    onEndRadiusChange: Function
+  },
   data() {
     return {
-      startRadius: 250,
-      endRadius: 250,
       options: {
         width: "80%", // 组件宽度
         height: 8,

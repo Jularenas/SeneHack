@@ -1,12 +1,20 @@
 <template>
   <div class="explorer-container">
-      <Sidebar />
+      <Sidebar 
+        :startRadius="startRadius"
+        :endRadius="endRadius"
+        :start="start"
+        :end="end"
+        :onStartRadiusChange="radius => this.startRadius = radius"
+        :onEndRadiusChange="radius => this.endRadius = radius"
+      />
       <Map 
         :startRadius="startRadius"
         :endRadius="endRadius"
         :start="start"
         :end="end"
         :onStartDrag="location => this.start = location.latLng"
+        :onEndDrag="location => this.end = location.latLng"
       />
 
 <!-- :onStartChange="newStart => this.start = newStart"
