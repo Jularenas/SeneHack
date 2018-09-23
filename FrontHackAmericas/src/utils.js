@@ -5,6 +5,7 @@ export function login(username,passwd,callback)
 {
     Http.open('POST',url+'/login',true);
     Http.setRequestHeader('Content-Type',"application/json");
+    Http.setRequestHeader('Access-Control-Request-Method',"POST");
     Http.onreadystatechange=function(){
         console.log(this.responseText);
         callback(this.responseText);
@@ -36,6 +37,7 @@ export function register(name,username,passwd,cellphone,fun)
     console.log("ADYACENTES");
     Http.open('POST',url+'/adyacentes',true);
     Http.setRequestHeader('Content-Type',"application/json");
+    Http.setRequestHeader('Access-Control-Request-Method',"POST");
     Http.onreadystatechange=function(){
         console.log(this.responseText);
         return this.responseText;
