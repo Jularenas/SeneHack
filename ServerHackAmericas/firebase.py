@@ -69,6 +69,23 @@ def createUser(origen,destino,login):
     db = firestore.client()
     db.collection(u'usuarios').document().set(data)
 
+def updateUserRT(origen,destino,login,categoria):
+    if(origen is None or destino is None or login is None or categoria is None):
+        return
+    data={}
+    data['longitudInicial']=origen['longitud']
+    data['latitudInicial']=origen['latitud']
+    data['longitudFinal']=destino['longitud']
+    data['latitudFinal']=destino['latitud']
+    data['usuario']="/datosPersonales/"+login
+    data['categoria']=categoria
+    db = firestore.client()
+    user_ref=db.collection(u'RT')
+    data['id']=user_ref.where(u'usuario',u'==',data['usuario']).get()[0].id
+    print(data)
+    db.collection(u'RT').document().set(data)
+
+updateUserRT({'longitud':0,'latitud':0},{'longitud':0,'latitud':0},'datosPersonales/julian','cicla')
 def register(user):
     if(user.get('usuario') is None or user.get('passwd') is None or
     user.get('celular') is None or user.get('nombre') is None):
@@ -102,6 +119,9 @@ def login(user):
     db = firestore.client()
     print ("TEST")
     doc_ref=db.collection(u'datosPersonales').document(usuario)
+    data={}
+    data["usuario"]=usuario
+    db.collection(u'RT').document().set(data)
     try:
         doc = doc_ref.get()
         doc=doc_ref.get()
