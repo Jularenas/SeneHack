@@ -5,7 +5,7 @@
     <div>
       <img id="foto" v-bind:src="require('@/assets/captura.png')" >
       <h2 id="slogan">La forma mas amigable de transportarse</h2>
-      <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend justo a pulvinar laoreet. Mauris varius sed enim ac accumsan. Nulla id tellus pharetra, vestibulum ante in, tempor mi. Donec at velit sed eros auctor tincidunt. Curabitur sed tincidunt sem. Mauris tempus ligula neque. Vivamus vel vestibulum quam.</h3>
+      <h3>Consigue transporte a cualquier hora y lugar en tiempo real o planea tus viajes de una forma eficiente, comoda y barata en el medio de transporte de tu elección</h3>
     </div>
     <div class="button-container">
    <Boton nombre="Registrate" v-on:click="registrar"></Boton>
@@ -48,7 +48,7 @@ export default {
   #foto_ciudad{
     position: fixed;
     width: 100%;
-    height: 108%;
+    height: 120%;
     left:0px;
     z-index:-1;
   }
@@ -72,9 +72,9 @@ export default {
   #slogan{
     font-size: 3em;
     color: #D9CCC1;
-    width: 40%;
+    width: 45%;
     line-height: 50px;
-    text-align: justify;
+    text-align: left;
   }
   h3{
     font-size: 1em;
