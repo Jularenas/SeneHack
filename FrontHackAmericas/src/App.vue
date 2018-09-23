@@ -22,23 +22,6 @@ export default {
     };
   },
   mounted() {
-<<<<<<< HEAD
-    //register('ja.manrique','ja.manrique.00','3131313131');
-    //login('ja.manrique','ja.manrique.00');
-    adyacentes('ja.manrique',4.5836411, -74.093567,4.5839411, -74.093667,10,5,);
-
-    var mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
-    mapboxgl.accessToken =
-      "pk.eyJ1Ijoic2d1em1hbm0iLCJhIjoiY2pleXB3aW45MDkxZDJxcDZzY3FnaTh2ZCJ9.B7iUjwcIAXVEmjQx6I3iEA";
-    var map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v10"
-    });
-    // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl());
-=======
-
->>>>>>> 8c82e0665e4668b8528d94f56741c5aa577c0d4f
     const esto = this;
     fetch('http://157.253.224.248:5000/adyacentes',{
       method: 'POST',
