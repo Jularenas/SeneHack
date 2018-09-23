@@ -69,6 +69,27 @@ def adyacentes():
         firebase.createUser(origen,destino,user)		
     return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada,firebase.getUsers()))
 
+@app.route('/adyacentesRT/<category>', methods=['POST'])
+def adyacentesRT(category):
+    if(request.method=='POST'):
+        req_data=request.get_json(force=True)
+        origenLat=req_data['origen']['latitud']
+        origenLon=req_data['origen']['longitud']
+        destinoLat=req_data['destino']['latitud']
+        destinoLon=req_data['destino']['longitud']
+        radioSalida=req_data['radioSalida']
+        radioLlegada=req_data['radioLlegada']
+        user=req_data['user']
+        origen={'latitud':origenLat,'longitud':origenLon}
+        destino={'latitud':destinoLat,'longitud':destinoLon}
+        firebase.createUser(origen,destino,user)		
+    return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada,firebase.getUsersRT(category)))
+
+@app.route('/closed/<user>', methods=['DELETE'])
+def close(user):
+    if(request.method=='DELETE'):
+        print('Conexión cerrada con: '+str(user))
+
 
     
 if __name__ == '__main__':
