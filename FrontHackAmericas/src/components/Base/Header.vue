@@ -3,8 +3,8 @@
       <img id="logo" v-bind:src="require('@/assets/Logo.png')" alt="">
       {{user}} - {{pass}}
       <div id="log">
-        <BaseInput v-model="user" class="textbox" type="text" placeholder="Usuario"></BaseInput>
-        <BaseInput v-model="pass" class="textbox" type="password" placeholder="Clave"></BaseInput>
+        <BaseInput v-model="user" class="textbox-1" type="text" placeholder="Usuario"></BaseInput>
+        <BaseInput v-model="pass" class="textbox-2" type="password" placeholder="Clave"></BaseInput>
         <Boton v-on:click="miMetodo" nombre="Log In"></Boton>
       </div>
   </div>
@@ -45,6 +45,14 @@ export default {
 </script>
 
 <style scoped>
+.textbox-1{
+  margin-top: 15px;
+  margin-right: 25px;
+}
+.textbox-2{
+  margin-top: 15px;
+  margin-right: 25px;
+}
 div#header {
   display: flex;
   flex-direction: row;
