@@ -15,3 +15,9 @@ pytz==2017.2
 six==1.11.0
 Werkzeug==0.12.2
 WTForms==2.1
+firebase-admin==2.13.0
+google-auth==1.5.1
+google-cloud-firestor>=0.27.0
+google-cloud-core==0.28.1
+google-cloud-storage>=1.2.0
+Flask-Cores==3.0.6
