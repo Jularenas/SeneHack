@@ -16,6 +16,7 @@ export default {
   methods:{
     onLogIn(){
         document.getElementById('log').style.display='none';
+        
     }
   },
   components:{

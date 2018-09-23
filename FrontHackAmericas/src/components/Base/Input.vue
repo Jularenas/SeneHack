@@ -1,7 +1,7 @@
 <template>
   <div class = "input">
     <form>
-      <input type="text" name="name" class="question" id="nme" required autocomplete="off" v-on="listeners" v-bind="$attrs"/>
+      <input class="question textarea" id="nme" required autocomplete="off" v-on="listeners" v-bind="$attrs"/>
       <label for="nme"><span>{{placeholder}}</span></label>
     </form>
   </div>
@@ -12,14 +12,6 @@
     name: 'Input',
     props:{
       placeholder: String
-    },
-    data() {
-      return{
-        placeholder: ''
-      }
-    },
-    created(){
-      this.placeholder = '';
     },
     computed:{
       listeners(){
@@ -49,7 +41,7 @@
   }
   input.question,
   textarea.question {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 300;
     border-radius: 2px;
     margin: 0;
@@ -60,7 +52,7 @@
     overflow-x: hidden;
   }
   input.question + label,
-textarea.question + label {
+.textarea.question + label {
   display: block;
   position: relative;
   white-space: nowrap;
@@ -75,7 +67,7 @@ textarea.question + label {
 }
 
 input.question:focus + label,
-textarea.question:focus + label {
+.textarea.question:focus + label {
   width: 80%;
 }
 

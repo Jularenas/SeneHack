@@ -1,9 +1,10 @@
 <template>
   <div id="header">
       <h1 id="logo">T-MON</h1>
+      {{user}} - {{pass}}
       <div id="log">
-        <BaseInput class="textbox" type="text" placeholder="Usuario"></BaseInput>
-        <BaseInput class="textbox" type="text" placeholder="Clave"></BaseInput>
+        <BaseInput v-model="user" class="textbox" type="text" placeholder="Usuario"></BaseInput>
+        <BaseInput v-model="pass" class="textbox" type="password" placeholder="Clave"></BaseInput>
         <Boton v-on:click="miMetodo" nombre="Log In"></Boton>
       </div>
   </div>
@@ -16,6 +17,12 @@ import BaseInput from '@/components/Base/Input';
 export default {
   props: {
     onLogin: Function
+  },
+  data(){
+    return{
+      user: '',
+      pass: ''
+    }
   },
   methods: {
     miMetodo() {
