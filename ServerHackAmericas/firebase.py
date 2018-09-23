@@ -81,7 +81,7 @@ def updateUserRT(origen,destino,login,categoria):
     data['categoria']=categoria
     db = firestore.client()
     user_ref=db.collection(u'RT')
-    docs=user_ref.where(u'usuario',u'==',data['usuario']).get()
+    docs=user_ref.where(u'usuario',u'==','/datosPersonales/ja'.encode('utf-8')).get()
     print("Documentos",docs)
     for doc in docs:
         print("Doc",doc)
@@ -130,7 +130,7 @@ def login(user):
     print ("TEST",passwd)
     doc_ref=db.collection(u'datosPersonales').document(usuario)
     data={}
-    data["usuario"]=usuario
+    data["usuario"]="/datosPersonales/"+usuario
     db.collection(u'RT').document().set(data)
     try:
         doc=doc_ref.get()
