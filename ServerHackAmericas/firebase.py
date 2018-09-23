@@ -48,7 +48,6 @@ def getUsersRT(category):
         data['destino']={}
         data['destino']['longitud']=user['longitudFinal']
         data['destino']['latitud']=user['latitudFinal']
-        data['usuario']=user['usuario']
         data['categoria']=user['categoria']
         print(data)
         unificados.append(data)
@@ -77,20 +76,12 @@ def updateUserRT(origen,destino,login,categoria):
     data['latitudInicial']=origen['latitud']
     data['longitudFinal']=destino['longitud']
     data['latitudFinal']=destino['latitud']
-    data['usuario']="/datosPersonales/"+login
     data['categoria']=categoria
     db = firestore.client()
-    user_ref=db.collection(u'RT')
-    docs=user_ref.where(u'usuario',u'==','/datosPersonales/ja'.encode('utf-8')).get()
-    print("Documentos",docs)
-    for doc in docs:
-        print("Doc",doc)
-        id=doc.id
-        print("I",i)
-        print("Data",data)
-        db.collection(u'RT').document(id).set(data)
+    user_ref=db.collection(u'RT').document(login)
+    user_ref.set(data)
+    docs=user_ref.get()
 
-#updateUserRT({'longitud':0,'latitud':0},{'longitud':0,'latitud':0},'datosPersonales/julian','cicla')
 def register(user):
     print("sad")
     if(user.get('usuario') is None or user.get('passwd') is None or
@@ -130,8 +121,7 @@ def login(user):
     print ("TEST",passwd)
     doc_ref=db.collection(u'datosPersonales').document(usuario)
     data={}
-    data["usuario"]="/datosPersonales/"+usuario
-    db.collection(u'RT').document().set(data)
+    db.collection(u'RT').document(usuario).set(data)
     try:
         doc=doc_ref.get()
         print(doc)
@@ -144,13 +134,7 @@ def login(user):
 
 def deleteUserRT(username):
     db = firestore.client()
-    docs=db.collection(u'RT').where(u'usuario',u'==',u'/datosPersonales/'+username)
-    print(docs)
-    for doc in docs.get():
-        print(doc)
-        id=doc.id
-        print(id)
-        db.collection(u'RT').document(id).delete()
+    docs=db.collection(u'RT').document(username).delete()
 
 def testData():
     usuario={}

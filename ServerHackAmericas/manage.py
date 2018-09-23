@@ -84,13 +84,15 @@ def adyacentesRT(category):
         user=req_data['user']
         origen={'latitud':origenLat,'longitud':origenLon}
         destino={'latitud':destinoLat,'longitud':destinoLon}
-        firebase.createUser(origen,destino,user)		
-    return str(functions.get10NearToRadius(origen,destino,radioSalida,radioLlegada,firebase.getUsersRT(category)))
+        firebase.updateUserRT(origen,destino,user,category)		
+    return str(functions.get10NearToRadiusRT(origen,destino,radioSalida,radioLlegada,firebase.getUsersRT(category)))
 
 @app.route('/closed/<user>', methods=['DELETE'])
 def close(user):
     if(request.method=='DELETE'):
         print('Conexión cerrada con: '+str(user))
+        firebase.deleteUserRT(user)
+    return "OK"
 
 
     

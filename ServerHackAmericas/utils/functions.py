@@ -30,6 +30,13 @@ def get10NearToRadius(location1,location2,radius1,radius2,users):
             readJsonData(rutas,nears,location1,location2,radius1,radius2)
     return nears
 
+def get10NearToRadiusRT(location1,location2,radius1,radius2,users):
+    nears=[]
+    if users!=None:
+        readJsonData(users,nears,location1,location2,radius1,radius2)
+        print("After firebase",len(nears))
+    return nears
+
 def readJsonData(rutas,nears,location1,location2,radius1,radius2):
     for i in range(len(rutas)):
         if radius1>=distance(location1,rutas[i]['origen']):
