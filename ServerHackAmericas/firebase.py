@@ -26,9 +26,33 @@ def getUsers():
         data['origen']['latitud']=user['latitudInicial']
         data['destino']={}
         data['destino']['longitud']=user['longitudFinal']
-        data['destino']['latitud']=user['longitudFinal']
+        data['destino']['latitud']=user['latitudFinal']
         print(data)
         unificados.append(data)
+    return unificados
+
+def getUsersRT(category):
+    if(category is None):
+        category=''
+    db = firestore.client()
+    users_ref = db.collection(u'RT')
+    docs = users_ref.where(u'categoria',u'==',category).get()
+    unificados=[]
+    for doc in docs:
+        data={}
+        user=doc.to_dict()
+        print(user)
+        data['origen']={}
+        data['origen']['longitud']=user['longitudInicial']
+        data['origen']['latitud']=user['latitudInicial']
+        data['destino']={}
+        data['destino']['longitud']=user['longitudFinal']
+        data['destino']['latitud']=user['latitudFinal']
+        data['usuario']=user['usuario']
+        data['categoria']=user['categoria']
+        print(data)
+        unificados.append(data)
+    print (unificados)
     return unificados
 
 def createUser(origen,destino,login):
@@ -89,6 +113,16 @@ def login(user):
     except NotFound:
         return str(False)
 
+def deleteUserRT(username):
+    db = firestore.client()
+    docs=db.collection(u'RT').where(u'usuario',u'==',u'/datosPersonales/'+username).get()
+    print(docs)
+    for doc in docs:
+        print(doc)
+        id=doc.get().id
+        print(id)
+        db.collection(u'RT').document(id).delete()
+
 def testData():
     usuario={}
     usuario['usuario']="julian"
@@ -109,5 +143,8 @@ def testData():
     destino['latitud']=12
     userLogin="s.guzmanm"
     createUser(origen,destino,userLogin)
-usuario={}
-print(register(usuario))
+deleteUserRT('julian')
+
+
+
+
