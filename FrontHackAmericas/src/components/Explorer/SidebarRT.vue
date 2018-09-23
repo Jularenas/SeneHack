@@ -74,7 +74,7 @@
 import BaseInput from "@/components/Base/Input";
 import Boton from "@/components/Base/Boton";
 import Slider from "vue-slider-component";
-import Result from "./Result";
+import Result from "./RTResult";
 import { adyacentes } from "@/utils";
 
 export default {
@@ -122,6 +122,7 @@ export default {
       this.searchMode = mode;
     },
     queryAdjacencies() {
+      const este = this;
       fetch("http://157.253.222.204:5000/adyacentesRT/" + this.searchMode, {
         method: "POST",
         headers: {
@@ -144,7 +145,6 @@ export default {
         .then(res => res.text())
         .then(json => {
           const parsed = JSON.parse(json.replace(/'/g, '"'));
-          console.log("parsed: ", parsed);
           este.onAdjacencyQuery(parsed);
         });
     }
@@ -161,6 +161,7 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow: auto;
 }
 
 .sidebar-container h1 {
@@ -188,7 +189,7 @@ label {
 .icons-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center ;
   align-items: flex-end;
   margin-top: 16px;
   width: 100%;
@@ -196,6 +197,7 @@ label {
 
 .icon-container {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -230,4 +232,13 @@ label {
 .icons-container .icon-container .selected-icon:hover {
   background-color: rgb(79, 153, 153);
 }
+
+
+.results-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 4px;
+}
+
 </style>

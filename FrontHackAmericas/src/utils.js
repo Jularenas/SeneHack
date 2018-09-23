@@ -7,7 +7,6 @@ export function login(username,passwd,callback)
     Http.setRequestHeader('Content-Type',"application/json");
     Http.setRequestHeader('Access-Control-Request-Method',"POST");
     Http.onreadystatechange=function(){
-        console.log(this.responseText);
         callback(this.responseText);
     }
     Http.send(JSON.stringify({
@@ -21,7 +20,6 @@ export function register(name,username,passwd,cellphone,fun)
     Http.open('POST',url+'/register',true);
     Http.setRequestHeader('Content-Type',"application/json");
     Http.onreadystatechange=function(){
-        console.log(this.responseText);
          fun(this.responseText);
     }
     Http.send(JSON.stringify({
@@ -39,7 +37,6 @@ export function register(name,username,passwd,cellphone,fun)
     Http.setRequestHeader('Content-Type',"application/json");
     Http.setRequestHeader('Access-Control-Request-Method',"POST");
     Http.onreadystatechange=function(){
-        console.log(this.responseText);
         cbk(this.responseText);
     }
     Http.send(JSON.stringify({

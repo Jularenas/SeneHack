@@ -16,8 +16,8 @@
       clickable
       draggable
       @drag="location => onStartDrag(location)"
-      label="Start"
-      title="Start"
+      label="Origen"
+      title="Origen"
       :position="start"
     />
 
@@ -30,8 +30,8 @@
       clickable
       draggable
       @drag="location => onEndDrag(location)"
-      label="End"
-      title="End"
+      label="Destino"
+      title="Destino"
       :position="end"
     />
 

@@ -9,7 +9,7 @@
         :onEndRadiusChange="radius => this.endRadius = radius"
         :searchMode="searchMode"
         :onAdjacencyQuery="(queryRes) => {
-          this.results = queryRes; 
+          results = queryRes; 
         }"
         :results='this.results'
       />
