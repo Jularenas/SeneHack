@@ -9,26 +9,28 @@
     
 <script>
 export default {
-  name: 'Satisfactorio',
+  name: "Satisfactorio",
   props: {
     nombre: String
   },
-  mounted(){
-      setTimeout(function () { this.$router.push({name: 'LandingPage'}); }.bind(this), 2000)
+  mounted() {
+    setTimeout(() => {
+      this.$router.push({ name: "LandingPage" });
+    }, 2000);
   }
-}
+};
 </script>
 
 <style scoped>
-*{
-  font-family: 'Montserrat', sans-serif;
+* {
+  font-family: "Montserrat", sans-serif;
 }
-.regis{
-    font-size: 28px;
+.regis {
+  font-size: 28px;
 }
-.registro{
-    margin-left: auto;
-    width: 100%;
-    margin-top: 125px;
-  }
+.registro {
+  margin-left: auto;
+  width: 100%;
+  margin-top: 125px;
+}
 </style>

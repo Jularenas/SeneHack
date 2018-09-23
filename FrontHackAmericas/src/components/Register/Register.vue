@@ -21,6 +21,7 @@ export default {
   },
   methods: {
     miMetodo() {
+      console.log('Register');
       register(this.name, this.email, this.pass, this.cell,(test)=>{
           this.$router.push({name: 'RegisterSatisfactorio', params:{nombre: this.name}});
       });

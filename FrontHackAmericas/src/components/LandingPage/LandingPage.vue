@@ -26,6 +26,7 @@ export default {
   },
   methods:{
     registrar: function(event){
+      console.log('lp')
       this.$router.push('Registrar');
     }
   }

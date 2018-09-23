@@ -4,7 +4,7 @@
       <div v-if="!loggedIn" id="log">
         <BaseInput v-model="user" class="textbox-1" type="text" placeholder="Usuario"></BaseInput>
         <BaseInput v-model="pass" class="textbox-2" type="password" placeholder="Clave"></BaseInput>
-        <Boton v-on:click="miMetodo" nombre="Log In"></Boton>
+        <Boton v-on:click="this.elMetodo" nombre="Log In"></Boton>
       </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
     }
   },
   methods: {
-    miMetodo() {
+    elMetodo() {
       login(this.user,this.pass,(test)=>{
         console.log(test);
         if(test==='True'){
