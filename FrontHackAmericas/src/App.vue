@@ -27,7 +27,7 @@ export default {
     };
   },
   mounted() {
-    
+
     /*
     //register('ja.manrique','ja.manrique.00','3131313131');
     //login('ja.manrique','ja.manrique.00');
@@ -56,7 +56,6 @@ export default {
 html, body{
   height: 100vh;
   width: 100vw;
-
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

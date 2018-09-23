@@ -19,7 +19,7 @@
       }
     },
     created(){
-      this.placeholder = 'Placeholder';
+      this.placeholder = '';
     },
     computed:{
       listeners(){
@@ -67,7 +67,7 @@ textarea.question + label {
   padding: 0;
   margin: 0;
   height: 100%;
-  width: 10%;
+  width: 35%;
   border-top: 1px solid red;
   -webkit-transition: width 0.4s ease;
   transition: width 0.4s ease;
