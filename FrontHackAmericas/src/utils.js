@@ -1,43 +1,45 @@
 const url = 'http://157.253.222.183:5000';
-export function login(username,passwd) {
-    console.log('Posting request to API');
-    fetch(url+"/login", {
-      method: 'POST',
-      mode:'no-cors',
-      body:JSON.stringify( {
-          usuario:username,
-          passwd:passwd
-      })
-    }).then(function(response) {
-        console.log("Login successful? "+response)
-      return response;
-    });
-  }
+const Http=new XMLHttpRequest();
 
-  export function register(username,passwd,cellphone) {
-    console.log('Posting request to API');
-    fetch(url+"/register", {
-      method: 'POST',
-      mode:'cors',
-      body: {
-          'usuario':username,
-          'passwd':passwd,
-          'celular':cellphone
-      }
-    }).then(function(response) {
-        console.log("Register successful? "+response)
-      return response;
-    });
-  }
+export function login(username,passwd)
+{
+    Http.open('POST',url+'/login',true);
+    Http.setRequestHeader('Content-Type',"application/json");
+    Http.onreadystatechange=function(){
+        console.log(this.responseText);
+        return this.responseText;
+    }
+    Http.send(JSON.stringify({
+        'usuario':username,
+        'passwd':passwd
+      }))
+}
 
-  
+export function register(username,passwd,cellphone)
+{
+    Http.open('POST',url+'/register',true);
+    Http.setRequestHeader('Content-Type',"application/json");
+    Http.onreadystatechange=function(){
+        console.log(this.responseText);
+        return this.responseText;
+    }
+    Http.send(JSON.stringify({
+        'usuario':username,
+        'passwd':passwd,
+        'celular':cellphone
+      }))
+}
+
  export  function adyacentes(username,origenLat,origenLon,destinoLat
 ,destinoLon,radioSalida,radioLlegada) {
-    fetch(url+"/adyacentes", {
-        method: 'POST',
-        mode:'cors',
-          body: {
-          'user':username,
+    Http.open('POST',url+'/adyacentes',true);
+    Http.setRequestHeader('Content-Type',"application/json");
+    Http.onreadystatechange=function(){
+        console.log(this.responseText);
+        return JSON.parse(this.responseText);
+    }
+    Http.send(JSON.stringify({
+        'user':username,
           'origen':{
               'latitud':origenLat,
               'longitud':origenLon
@@ -48,13 +50,7 @@ export function login(username,passwd) {
           },
           'radioSalida':radioSalida,
           'radioLlegada':radioLlegada
-        }
-    }).then(function(response) {
-        return response.json();
-      }).then(function(data) {S
-        console.log('Users list:', data);
-        return data
-      });
+      }))
   }
 
  
