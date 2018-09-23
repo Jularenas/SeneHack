@@ -62,7 +62,7 @@ export default {
 html, body{
   height: 100vh;
   width: 100vw;
-  
+
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
