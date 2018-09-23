@@ -45,6 +45,9 @@ export default {
       searchMode:[],
       results: []
     }
+  },
+  mounted(){
+    
   }
 };
 </script>
@@ -55,6 +58,7 @@ export default {
   display: flex;
   flex-direction: row;
   height: calc(100vh - 80px);
+  margin: 0 5vw;
   margin-top: 80px;
 }
 

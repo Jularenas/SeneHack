@@ -15,18 +15,13 @@ export default new Router({
     {
       path: '/',
       name: 'LandingPage',
-      component: LandingPage,
-      props: true
+      component: LandingPage
     },
     {
       path: '/Explore',
-      name: 'Explorer',
-      component: Explorer
-    },
-    {
-      path: '/',
-      name: 'LandingPage',
-      component: LandingPage
+      name: 'Explore',
+      component: Explorer,
+      props: true
     },
     {
       path: '/HelloWorld',
@@ -51,7 +46,8 @@ export default new Router({
     {
       path: '/RealTime',
       name:'RealTime',
-      component: RealTime
+      component: RealTime,
+      props: true
     }
   ]
 })

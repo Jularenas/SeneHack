@@ -30,8 +30,8 @@ export default {
       login(this.user,this.pass,(test)=>{
         console.log(test);
         if(test==='True'){
-          this.onLogin();
-          this.$router.push("Explore", {user: this.user});
+          this.onLogin(this.user);
+          this.$router.push({name: "Explore", params: {user: this.user}});
         }
         else if (!test)
           alert("El usuario o la clave son incorrectos");
