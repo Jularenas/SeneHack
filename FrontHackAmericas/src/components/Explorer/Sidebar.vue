@@ -43,8 +43,16 @@
       </div>
     </div>
     <Boton
+      @click="this.queryAdjacencies"
       nombre="Buscar"
     />
+
+    <div class="results-container">
+      <Result v-for="result in results"
+        :key="result.date"
+      />
+    </div>
+
   </div>
 </template>
 
@@ -52,12 +60,15 @@
 import BaseInput from "@/components/Base/Input";
 import Boton from "@/components/Base/Boton";
 import Slider from "vue-slider-component";
+import Result from "./Result";
+import {adyacentes} from '@/utils'
 
 export default {
   components: {
     BaseInput,
     Slider,
-    Boton
+    Boton,
+    Result
   },
   props: {
     startRadius: Number,
@@ -86,7 +97,8 @@ export default {
         useKeyboard: false, // 是否使用键盘控制
         reverse: false, // 是否反向组件
         speed: 0.5 // 动画速度
-      }
+      },
+      results:[]
     };
   },
   methods: {
@@ -95,10 +107,12 @@ export default {
       if (index !== -1) {
         //The item is on the list
         this.searchMode.splice(index, 1);
-      }
-      else{
+      } else {
         this.searchMode.push(mode);
       }
+    },
+    queryAdjacencies() {
+      console.log(this.$route.params);
     }
   }
 };
@@ -164,15 +178,15 @@ label {
   transition: all 0.2s ease-in-out;
 }
 
-.icon-container i:hover{
+.icon-container i:hover {
   background-color: rgb(232, 255, 255);
 }
 
-.icons-container .icon-container .selected-icon{
+.icons-container .icon-container .selected-icon {
   background-color: rgb(118, 180, 180);
 }
 
-.icons-container .icon-container .selected-icon:hover{
+.icons-container .icon-container .selected-icon:hover {
   background-color: rgb(79, 153, 153);
 }
 </style>
