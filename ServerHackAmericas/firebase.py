@@ -6,7 +6,7 @@ from firebase_admin import firestore
 import datetime
 import hashlib
 import json
-
+from google.cloud.exceptions import NotFound
 
 cred = credentials.Certificate("senehack-firebase-adminsdk-lnk8g-fbd99ef620.json")
 firebase_admin.initialize_app(cred)
@@ -54,10 +54,12 @@ def register(user):
     data['celular']=user['celular']
     data['nombre']=user['nombre']
     db = firestore.client()
-    if(db.collection(u'datosPersonales').document(usuario) is None):
+    try:
+        db.collection(u'datosPersonales').document(usuario).get()
         return str(False)
-    db.collection(u'datosPersonales').document(usuario).set(data)
-    return str(True)
+    except NotFound:
+        db.collection(u'datosPersonales').document(usuario).set(data)
+        return str(True)
 
 def login(user):
     usuario=user['usuario']
@@ -67,18 +69,26 @@ def login(user):
     print(m.hexdigest())
     passwd=m.hexdigest()
     db = firestore.client()
+    print ("TEST")
     doc_ref=db.collection(u'datosPersonales').document(usuario)
-    if(doc_ref is None):
-        return str(False)
-    else:
+    try:
+        doc = doc_ref.get()
         doc=doc_ref.get()
         print(doc)
         print(doc.to_dict())
         if(doc.to_dict()['passwd']!=passwd):
             return str(False)
-    return str(True)
+        return str(True)
+    except NotFound:
+        return str(False)
 
 def testData():
+    usuario={}
+    usuario['usuario']="julian"
+    usuario['nombre']='nombre'
+    usuario['passwd']='test'
+    usuario['celular']='3017912608'
+    print(register(usuario))
     usuario['usuario']="s.guzmanm"
     usuario['passwd']='test'
     usuario['celular']='3017912608'
@@ -92,7 +102,3 @@ def testData():
     destino['latitud']=12
     userLogin="s.guzmanm"
     createUser(origen,destino,userLogin)
-
-usuario={}
-
-
