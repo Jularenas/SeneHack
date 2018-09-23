@@ -22,6 +22,7 @@ export default {
     };
   },
   mounted() {
+<<<<<<< HEAD
     //register('ja.manrique','ja.manrique.00','3131313131');
     //login('ja.manrique','ja.manrique.00');
     adyacentes('ja.manrique',4.5836411, -74.093567,4.5839411, -74.093667,10,5,);
@@ -35,6 +36,9 @@ export default {
     });
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
+=======
+
+>>>>>>> 8c82e0665e4668b8528d94f56741c5aa577c0d4f
     const esto = this;
     fetch('http://157.253.224.248:5000/adyacentes',{
       method: 'POST',
@@ -67,7 +71,7 @@ export default {
 html, body{
   height: 100vh;
   width: 100vw;
-  
+
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
