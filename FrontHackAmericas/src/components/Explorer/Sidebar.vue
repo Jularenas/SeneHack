@@ -151,6 +151,7 @@ export default {
 </script>
 
 <style scoped>
+
 .sidebar-container {
   display: flex;
   flex: 1.5;

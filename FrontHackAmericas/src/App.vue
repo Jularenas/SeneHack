@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :onLogin="this.onLogIn"></Header>
+    <Header :loggedIn="loggedIn" :onLogin="onLogIn" :onRegister="onRegister"></Header>
     <router-view></router-view>
   </div>
 </template>
@@ -15,8 +15,10 @@ export default {
   name: "app",
   methods:{
     onLogIn(){
-        document.getElementById('log').style.display='none';
-        
+      this.loggedIn = true;
+    },
+    onRegister(){
+      this.onRegister = true;
     }
   },
   components:{
@@ -24,7 +26,8 @@ export default {
   },
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+      loggedIn: false,
+      inRegister: false
     };
   },
   mounted() {
@@ -54,10 +57,16 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 html, body{
   height: 100vh;
   width: 100vw;
 }
+
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
