@@ -81,49 +81,58 @@ def updateUserRT(origen,destino,login,categoria):
     data['categoria']=categoria
     db = firestore.client()
     user_ref=db.collection(u'RT')
-    data['id']=user_ref.where(u'usuario',u'==',data['usuario']).get()[0].id
-    print(data)
-    db.collection(u'RT').document().set(data)
+    docs=user_ref.where(u'usuario',u'==','/datosPersonales/ja'.encode('utf-8')).get()
+    print("Documentos",docs)
+    for doc in docs:
+        print("Doc",doc)
+        id=doc.id
+        print("I",i)
+        print("Data",data)
+        db.collection(u'RT').document(id).set(data)
 
-updateUserRT({'longitud':0,'latitud':0},{'longitud':0,'latitud':0},'datosPersonales/julian','cicla')
+#updateUserRT({'longitud':0,'latitud':0},{'longitud':0,'latitud':0},'datosPersonales/julian','cicla')
 def register(user):
+    print("sad")
     if(user.get('usuario') is None or user.get('passwd') is None or
     user.get('celular') is None or user.get('nombre') is None):
         return str(False)
+    print ("Llega")
     data={}
     usuario=user['usuario']
     passwd=user['passwd'].encode('utf-8')
     m = hashlib.md5()
     m.update(passwd)
-    print (m.hexdigest())
+    print ("DIGEST",m.hexdigest(),user)
     data['passwd']=m.hexdigest()
     data['celular']=user['celular']
     data['nombre']=user['nombre']
     db = firestore.client()
     try:
         db.collection(u'datosPersonales').document(usuario).get()
+        print ("Ya existe con el usuario")
         return str(False)
     except NotFound:
         db.collection(u'datosPersonales').document(usuario).set(data)
         return str(True)
 
 def login(user):
-    if(user.get('usuario') is None or user.get('password') is None):
+    print("Inicio",user)
+    if(user.get('usuario') is None or user.get('passwd') is None):
         return str(False)
     usuario=user['usuario']
     passwd=user['passwd'].encode('utf-8')
+    print(usuario,passwd)
     m = hashlib.md5()
     m.update(passwd)
     print(m.hexdigest())
     passwd=m.hexdigest()
     db = firestore.client()
-    print ("TEST")
+    print ("TEST",passwd)
     doc_ref=db.collection(u'datosPersonales').document(usuario)
     data={}
-    data["usuario"]=usuario
+    data["usuario"]="/datosPersonales/"+usuario
     db.collection(u'RT').document().set(data)
     try:
-        doc = doc_ref.get()
         doc=doc_ref.get()
         print(doc)
         print(doc.to_dict())
@@ -135,17 +144,17 @@ def login(user):
 
 def deleteUserRT(username):
     db = firestore.client()
-    docs=db.collection(u'RT').where(u'usuario',u'==',u'/datosPersonales/'+username).get()
+    docs=db.collection(u'RT').where(u'usuario',u'==',u'/datosPersonales/'+username)
     print(docs)
-    for doc in docs:
+    for doc in docs.get():
         print(doc)
-        id=doc.get().id
+        id=doc.id
         print(id)
         db.collection(u'RT').document(id).delete()
 
 def testData():
     usuario={}
-    usuario['usuario']="julian"
+    usuario['usuario']="s.guzmanm"
     usuario['nombre']='nombre'
     usuario['passwd']='test'
     usuario['celular']='3017912608'
@@ -163,7 +172,27 @@ def testData():
     destino['latitud']=12
     userLogin="s.guzmanm"
     createUser(origen,destino,userLogin)
-deleteUserRT('julian')
+
+
+usuario={}
+usuario['usuario']="s.guzmanm"
+usuario['nombre']='nombre'
+usuario['passwd']='test'
+usuario['celular']='3017912608'
+print(register(usuario))
+
+print(login(usuario))
+origen={}
+origen['longitud']=12
+origen['latitud']=12
+destino={}
+destino['longitud']=12
+destino['latitud']=12
+userLogin="s.guzmanm"
+updateUserRT(origen,destino,userLogin,'cicla')
+
+
+#deleteUserRT('s.guzmanm')
 
 
 
