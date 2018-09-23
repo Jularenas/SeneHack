@@ -46,8 +46,7 @@ export default {
   #foto_ciudad{
     position: fixed;
     width: 100%;
-    height: 100%;
-    top:80px;
+    height: 108%;
     left:0px;
     z-index:-1;
   }
@@ -89,8 +88,16 @@ export default {
     display: inline-block;
     margin-right: 5%;
     margin-top: 35%;
-    color: #6B91B6;
+    color: #6B91B6 ;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
   }
+
+  i:hover{
+    color: #f45e61;
+    font-size: 4em;
+  }
+
   #redes{
     position: absolute;
     top:60%;
