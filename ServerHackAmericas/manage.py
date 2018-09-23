@@ -85,7 +85,7 @@ def adyacentesRT(category):
         origen={'latitud':origenLat,'longitud':origenLon}
         destino={'latitud':destinoLat,'longitud':destinoLon}
         firebase.updateUserRT(origen,destino,user,category)		
-    return str(functions.get10NearToRadiusRT(origen,destino,radioSalida,radioLlegada,firebase.getUsersRT(category)))
+    return str(functions.get10NearToRadiusRT(origen,destino,radioSalida,radioLlegada,firebase.getUsersRT(category,user)))
 
 @app.route('/closed/<user>', methods=['DELETE'])
 def close(user):

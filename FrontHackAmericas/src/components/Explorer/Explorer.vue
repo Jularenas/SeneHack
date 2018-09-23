@@ -30,11 +30,25 @@ import Sidebar from "./Sidebar";
 
 export default {
   props: {
-    email: String
+    user: String
   },
   components: {
     Map,
     Sidebar
+  },
+  methods:{
+  },
+  created: function () {
+    var borrar = this.user;
+    console.log(borrar);
+    window.addEventListener('beforeunload', function (event) {
+      const url = 'http://157.253.222.204:5000/closed/'+borrar;
+      const Http=new XMLHttpRequest();
+      Http.open('DELETE', url, false);
+      Http.send();
+      console.log("Acabó 1");
+      return null;
+    }, false)
   },
   data(){
     return{

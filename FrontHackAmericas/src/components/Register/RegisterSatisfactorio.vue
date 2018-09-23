@@ -20,6 +20,9 @@ export default {
 </script>
 
 <style scoped>
+*{
+  font-family: 'Montserrat', sans-serif;
+}
 .regis{
     font-size: 28px;
 }
