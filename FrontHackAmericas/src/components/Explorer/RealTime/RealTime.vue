@@ -49,13 +49,11 @@ export default {
 </script>
 
 <style scoped>
-
-.explorer-container{
+.explorer-container {
   display: flex;
   flex-direction: row;
   height: calc(100vh - 80px);
   margin: 0 5vw;
   margin-top: 80px;
 }
-
 </style>
