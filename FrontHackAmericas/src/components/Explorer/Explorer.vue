@@ -36,6 +36,16 @@ export default {
     Map,
     Sidebar
   },
+  mounted(){
+    window.onbeforeunload = closingCode;
+    function closingCode(){
+      const url = 'http://157.253.222.183:5000/closed'+this.email;
+      const Http=new XMLHttpRequest();
+      Http.open('DELETE', url, false);
+      Http.send();
+      return null;
+}
+  },
   data(){
     return{
       start: {lat: 4.620783, lng: -74.077571},
