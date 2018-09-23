@@ -21,35 +21,16 @@
         v-bind="options"
       />
     </div>
-
-    <div class='icons-container'>
-
-      <div class="icon-container">
-        <label>Buscar fuentes</label>
-        <i
-          @click="() => selectMode('fuentes')" 
-          :class="['material-icons', searchMode.indexOf('fuentes') !== -1 ? 'selected-icon' : {} ]">
-          commute
-        </i>
-      </div>
-
-      <div class="icon-container">
-        <label>Buscar peers</label>
-        <i
-          @click="() => selectMode('peers')" 
-          :class="['material-icons', searchMode.indexOf('peers') !== -1 ? 'selected-icon' : {} ]">
-          transfer_within_a_station
-        </i>
-      </div>
-    </div>
+    <select name="category" id="categoty">
+      <option value="ciclas">ciclas</option>
+      <option value="taxi">taxi</option>
+      <option value="carro">carro</option>
+    </select>
     <Boton
       @click="queryAdjacencies"
       nombre="Buscar"
     />
-    <Boton
-      @click="miMetodo"
-      nombre="Tiempo Real"
-    />
+
     <div class="results-container">
       <Result v-for="result in results"
         :key="result.fecha_calculo"
@@ -73,7 +54,8 @@ export default {
     Slider,
     Boton,
     Result
-  },props: {
+  },
+  props: {
     startRadius: Number,
     endRadius: Number,
     start: Object,
@@ -142,9 +124,6 @@ export default {
           console.log("parsed: ", parsed);
           este.onAdjacencyQuery(parsed);
         });
-    },
-    miMetodo(){
-      this.$router.push('RealTime')
     }
   }
 };
