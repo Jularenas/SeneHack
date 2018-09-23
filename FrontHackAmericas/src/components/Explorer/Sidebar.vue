@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-container">
     <h1>
-      Encuentra parceros:
+      Encuentra pares y fuentes:
     </h1>
 
     <label>Radio de búsqueda (inicio)</label>
@@ -17,28 +17,47 @@
 
     <div class="slider-container">
       <Slider 
-        v-model="endRadius"
+        @input="event => this.onEndRadiusChange(event)"
         v-bind="options"
       />
     </div>
 
-    <div>
-      <i class="material-icons">commute</i>
-      <i class="material-icons">transfer_within_a_station</i>
+    <div class='icons-container'>
+
+      <div class="icon-container">
+        <label>Buscar fuentes</label>
+        <i
+          @click="() => selectMode('fuentes')" 
+          :class="['material-icons', searchMode.indexOf('fuentes') !== -1 ? 'selected-icon' : {} ]">
+          commute
+        </i>
+      </div>
+
+      <div class="icon-container">
+        <label>Buscar peers</label>
+        <i
+          @click="() => selectMode('peers')" 
+          :class="['material-icons', searchMode.indexOf('peers') !== -1 ? 'selected-icon' : {} ]">
+          transfer_within_a_station
+        </i>
+      </div>
     </div>
-
-
+    <Boton
+      nombre="Buscar"
+    />
   </div>
 </template>
 
 <script>
-import BaseInput from '@/components/Base/Input';
+import BaseInput from "@/components/Base/Input";
+import Boton from "@/components/Base/Boton";
 import Slider from "vue-slider-component";
 
 export default {
   components: {
     BaseInput,
-    Slider
+    Slider,
+    Boton
   },
   props: {
     startRadius: Number,
@@ -46,12 +65,13 @@ export default {
     start: Object,
     end: Object,
     onStartRadiusChange: Function,
-    onEndRadiusChange: Function
+    onEndRadiusChange: Function,
+    searchMode: Array
   },
   data() {
     return {
       options: {
-        width: "80%", // 组件宽度
+        width: "100%", // 组件宽度
         height: 8,
         direction: "horizontal", // 组件方向
         dotSize: 16, // 滑块大小
@@ -68,6 +88,18 @@ export default {
         speed: 0.5 // 动画速度
       }
     };
+  },
+  methods: {
+    selectMode(mode) {
+      const index = this.searchMode.indexOf(mode);
+      if (index !== -1) {
+        //The item is on the list
+        this.searchMode.splice(index, 1);
+      }
+      else{
+        this.searchMode.push(mode);
+      }
+    }
   }
 };
 </script>
@@ -75,21 +107,21 @@ export default {
 <style scoped>
 .sidebar-container {
   display: flex;
-  flex: 1.4;
+  flex: 1.5;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
 .sidebar-container h1 {
-  font-size: 2rem;
+  font-size: 1.92rem;
 }
 
-label{
-  
+label {
+  font-size: 1.32rem;
 }
 
-.slider-container{
+.slider-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -99,4 +131,48 @@ label{
   width: 80%;
 }
 
+.icons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  width: 60%;
+}
+
+.icon-container i {
+  border: 3px #2c3e50 solid;
+  padding: 3px;
+  font-size: 2.6rem;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.icon-container i:hover{
+  background-color: rgb(232, 255, 255);
+}
+
+.icons-container .icon-container .selected-icon{
+  background-color: rgb(118, 180, 180);
+}
+
+.icons-container .icon-container .selected-icon:hover{
+  background-color: rgb(79, 153, 153);
+}
 </style>

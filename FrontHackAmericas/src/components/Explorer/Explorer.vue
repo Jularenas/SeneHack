@@ -7,6 +7,7 @@
         :end="end"
         :onStartRadiusChange="radius => this.startRadius = radius"
         :onEndRadiusChange="radius => this.endRadius = radius"
+        :searchMode="searchMode"
       />
       <Map 
         :startRadius="startRadius"
@@ -38,12 +39,10 @@ export default {
   data(){
     return{
       start: {lat: 4.620783, lng: -74.077571},
-      end: {lat: 4.690783, lng: -74.177571},
+      end: {lat: 4.650783, lng: -74.098771},
       startRadius: 100,
       endRadius: 100,
-      searchMode:[
-        ''
-      ]
+      searchMode:[]
     }
   }
 };
