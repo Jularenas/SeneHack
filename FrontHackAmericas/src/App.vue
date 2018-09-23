@@ -40,27 +40,7 @@ export default {
     */
 
     const esto = this;
-    fetch('http://157.253.224.248:5000/adyacentes',{
-      method: 'POST',
-      body: JSON.stringify({
-        origen:{
-          latitud: 4.661257,
-          longitud: -74.114722
-        },
-        destino: {
-          latitud: 4.603030,
-          longitud: -74.065253
-        },
-        radioSalida: 20,
-        radioLlegada: 20
-      })
-    }).then(res => res.text()).then(text =>{
-        const parsed = text.replace(/'/g, '"');
-        const json = JSON.parse(parsed);
-        esto.msg = json;
-        console.log(json)
-      }
-    ).catch(error => console.log(error));
+    adyacentes('s.guzmanm', 4.5836411, -74.093567, 4.5839411, -74.093667,10,5,);
   }
 };
 
