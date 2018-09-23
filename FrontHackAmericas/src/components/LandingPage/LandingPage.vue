@@ -6,6 +6,7 @@
     <h2 id="slogan">La forma mas amigable de transportarse</h2>
     <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend justo a pulvinar laoreet. Mauris varius sed enim ac accumsan. Nulla id tellus pharetra, vestibulum ante in, tempor mi. Donec at velit sed eros auctor tincidunt. Curabitur sed tincidunt sem. Mauris tempus ligula neque. Vivamus vel vestibulum quam.</h3>
    <button id="registro">Registrarse</button>
+   <Boton nombre="Registrate"></Boton>
     <div id="redes">
       <i class="fab fa-facebook-square"></i>
       <i class="fab fa-twitter-square"></i>
@@ -15,8 +16,11 @@
 </template>
 
 <script>
+import Boton from '@/components/Base/Boton';
 export default {
-  
+  components:{
+    Boton
+  }
 }
 </script>
 
