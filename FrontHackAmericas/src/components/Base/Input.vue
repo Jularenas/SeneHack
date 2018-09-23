@@ -28,11 +28,14 @@
   }
 </script>
 <style scoped>
+*{
+  font-family: 'Montserrat', sans-serif;
+}
   input,
   span,
   label,
   textarea {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     display: block;
     margin: 10px;
     padding: 5px;
@@ -45,6 +48,7 @@
   }
   input.question,
   textarea.question {
+    color: black;
     font-size: 24px;
     font-weight: 300;
     border-radius: 2px;
@@ -63,7 +67,7 @@
   padding: 0;
   margin: 0;
   height: 100%;
-  width: 35%;
+  width: 45%;
   border-top: 1px solid red;
   -webkit-transition: width 0.4s ease;
   transition: width 0.4s ease;
@@ -72,7 +76,8 @@
 
 input.question:focus + label,
 .textarea.question:focus + label {
-  width: 80%;
+  width: 90%;
+  color: white;
 }
 
 input.question:focus,
@@ -88,15 +93,15 @@ textarea.question:focus {
 input.question:focus + label > span,
 input.question:valid + label > span {
   top: -80px;
-  font-size: 22px;
+  font-size: 20px;
   color: #333;
 }
 
 textarea.question:focus + label > span,
 textarea.question:valid + label > span {
   top: -80px;
-  font-size: 22px;
-  color: #333;
+  font-size: 20px;
+  color: white;
 }
 
 input.question:valid + label,

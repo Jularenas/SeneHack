@@ -2,8 +2,8 @@
   <div id="header">
       <img id="logo" v-bind:src="require('@/assets/Logo.png')" alt="">
       <div v-if="!loggedIn" id="log">
-        <BaseInput v-model="user" class="textbox" type="text" placeholder="Usuario"></BaseInput>
-        <BaseInput v-model="pass" class="textbox" type="password" placeholder="Clave"></BaseInput>
+        <BaseInput v-model="user" class="textbox-1" type="text" placeholder="Usuario"></BaseInput>
+        <BaseInput v-model="pass" class="textbox-2" type="password" placeholder="Clave"></BaseInput>
         <Boton v-on:click="miMetodo" nombre="Log In"></Boton>
       </div>
   </div>
@@ -30,8 +30,8 @@ export default {
       login(this.user,this.pass,(test)=>{
         console.log(test);
         if(test==='True'){
-          this.onLogin();
-          this.$router.push("Explore", {user: this.user});
+          this.onLogin(this.user);
+          this.$router.push({name: "Explore", params: {user: this.user}});
         }
         else if (!test)
           alert("El usuario o la clave son incorrectos");
@@ -47,6 +47,14 @@ export default {
 </script>
 
 <style scoped>
+.textbox-1{
+  margin-top: 15px;
+  margin-right: 25px;
+}
+.textbox-2{
+  margin-top: 15px;
+  margin-right: 25px;
+}
 div#header {
   display: flex;
   flex-direction: row;
@@ -64,7 +72,7 @@ div#header {
   align-items: center;
   font-size: 0.9em;
   padding-top: 20px;
-  width: 30%;
+  width: 35%;
 }
 
 #logo {

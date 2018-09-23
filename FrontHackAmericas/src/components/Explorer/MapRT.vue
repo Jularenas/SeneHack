@@ -13,11 +13,8 @@
     />
 
     <GmapMarker
-      clickable
-      draggable
-      @drag="location => onStartDrag(location)"
-      label="Start"
-      title="Start"
+      label="Tu posición"
+      title="Inicio"
       :position="start"
     />
 
@@ -30,8 +27,8 @@
       clickable
       draggable
       @drag="location => onEndDrag(location)"
-      label="End"
-      title="End"
+      label="Destino"
+      title="Destino"
       :position="end"
     />
 

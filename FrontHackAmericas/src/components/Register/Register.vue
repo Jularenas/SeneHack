@@ -22,7 +22,7 @@ export default {
   methods: {
     miMetodo() {
       register(this.name, this.email, this.pass, this.cell,(test)=>{
-          this.$router.push('Explore');
+          this.$router.push({name: 'RegisterSatisfactorio', params:{nombre: this.name}});
       });
       
     }
@@ -31,15 +31,19 @@ export default {
 </script>
 
 <style scoped>
+  *{
+    font-family: 'Montserrat', sans-serif;
+  }
   .recuadro{
       border-style: solid;
       border-radius: 5px;
       border-width: 2px;
       width: 55%;
   }
-
+  .registro > input{
+    color: black;
+  }
   .registro{
-    
     margin-left: auto;
     width: 65%;
     margin-top: 95px;
