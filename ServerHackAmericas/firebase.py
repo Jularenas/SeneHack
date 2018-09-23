@@ -52,6 +52,7 @@ def register(user):
     print (m.hexdigest())
     data['passwd']=m.hexdigest()
     data['celular']=user['celular']
+    data['nombre']=user['nombre']
     db = firestore.client()
     if(db.collection(u'datosPersonales').document(usuario) is None):
         return str(False)

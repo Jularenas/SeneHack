@@ -31,7 +31,6 @@ def get10NearToRadius(location1,location2,radius1,radius2,users):
     return nears
 
 def readJsonData(rutas,nears,location1,location2,radius1,radius2):
-    print(rutas)
     for i in range(len(rutas)):
         if radius1>=distance(location1,rutas[i]['origen']):
             if radius2>=distance(location2,rutas[i]['destino']):

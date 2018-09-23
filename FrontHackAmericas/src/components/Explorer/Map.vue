@@ -8,7 +8,7 @@
     >
     <GmapCircle
       :center="start"
-      :radius="40"
+      :radius="startRadius"
     />
 
     <GmapMarker
