@@ -15,7 +15,7 @@ export function login(username,passwd)
       }))
 }
 
-export function register(username,passwd,cellphone)
+export function register(name,username,passwd,cellphone)
 {
     Http.open('POST',url+'/register',true);
     Http.setRequestHeader('Content-Type',"application/json");
@@ -24,6 +24,7 @@ export function register(username,passwd,cellphone)
         return this.responseText;
     }
     Http.send(JSON.stringify({
+        'nombre':name,
         'usuario':username,
         'passwd':passwd,
         'celular':cellphone
