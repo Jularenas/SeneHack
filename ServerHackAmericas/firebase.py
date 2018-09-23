@@ -85,7 +85,7 @@ def updateUserRT(origen,destino,login,categoria):
     print(data)
     db.collection(u'RT').document().set(data)
 
-updateUserRT({'longitud':0,'latitud':0},{'longitud':0,'latitud':0},'datosPersonales/julian','cicla')
+#updateUserRT({'longitud':0,'latitud':0},{'longitud':0,'latitud':0},'datosPersonales/julian','cicla')
 def register(user):
     if(user.get('usuario') is None or user.get('passwd') is None or
     user.get('celular') is None or user.get('nombre') is None):
@@ -135,11 +135,11 @@ def login(user):
 
 def deleteUserRT(username):
     db = firestore.client()
-    docs=db.collection(u'RT').where(u'usuario',u'==',u'/datosPersonales/'+username).get()
+    docs=db.collection(u'RT').where(u'usuario',u'==',u'/datosPersonales/julian')
     print(docs)
-    for doc in docs:
+    for doc in docs.get():
         print(doc)
-        id=doc.get().id
+        id=doc.id
         print(id)
         db.collection(u'RT').document(id).delete()
 
@@ -163,6 +163,8 @@ def testData():
     destino['latitud']=12
     userLogin="s.guzmanm"
     createUser(origen,destino,userLogin)
+
+db = firestore.client()
 deleteUserRT('julian')
 
 
