@@ -6,7 +6,7 @@ import Input from '@/components/Base/Input'
 import Explorer from '@/components/Explorer/Explorer'
 import Boton from '@/components/Base/Boton'
 import Registrar from '@/components/Register/Register'
-import RealTime from '@/components/RealTime/RealTime'
+import RealTime from '@/components/Explorer/RealTime/RealTime'
 
 Vue.use(Router)
 
@@ -49,7 +49,7 @@ export default new Router({
       component: Registrar
     },
     {
-      path: 'RealTime',
+      path: '/RealTime',
       name:'RealTime',
       component: RealTime
     }
