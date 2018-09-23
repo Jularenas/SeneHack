@@ -45,7 +45,9 @@ def home_page():
 def login():
     if(request.method=='POST'):
         req_data=request.get_json()
-        return firebase.login(req_data)
+        a=firebase.login(req_data)
+        print(a)
+        return a
     
 @app.route('/register',methods=['POST'])
 def register():
