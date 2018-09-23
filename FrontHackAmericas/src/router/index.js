@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import LandingPage from '@/components/LandingPage/LandingPage'
 import Input from '@/components/Base/Input'
 import Explorer from '@/components/Explorer/Explorer'
+import Boton from '@/components/Base/Boton'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/Input',
       name: 'Input',
       component: Input
+    },
+    {
+      path: '/Boton',
+      name: 'Boton',
+      component: Boton
     }
   ]
 })
