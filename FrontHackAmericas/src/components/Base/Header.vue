@@ -1,6 +1,6 @@
 <template>
   <div id="header">
-      <h1 id="logo">T-MON</h1>
+      <img id="logo" v-bind:src="require('@/assets/Logo.png')" alt="">
       {{user}} - {{pass}}
       <div id="log">
         <BaseInput v-model="user" class="textbox" type="text" placeholder="Usuario"></BaseInput>
@@ -13,6 +13,7 @@
 
 import Boton from '@/components/Base/Boton';
 import BaseInput from '@/components/Base/Input';
+import {login} from '@/utils.js';
 
 export default {
   props: {
@@ -26,7 +27,14 @@ export default {
   },
   methods: {
     miMetodo() {
-      this.$router.push("Explore", this.onLogin);
+      login(this.user,this.pass,(test)=>{
+        console.log(test);
+        if(test==='True')
+          this.$router.push("Explore", this.onLogin);
+        else if (test==='False')
+          alert("El usuario o la clave son incorrectos");
+      });
+      
     }
   },
   components:{
@@ -46,11 +54,6 @@ div#header {
   background-color: #225584;
   position: fixed;
 }
-h1#logo {
-  margin-left: 20px;
-  margin-top: 20px;
-  font-size: 5em;
-}
 #log{
   display: flex;
   flex-direction: row;
@@ -61,5 +64,8 @@ h1#logo {
   width: 30%;
 }
 
-
+#logo {
+  top:0px;
+  height: 80px;
+}
 </style>

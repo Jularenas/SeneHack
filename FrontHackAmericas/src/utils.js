@@ -1,13 +1,13 @@
 const url = 'http://157.253.222.183:5000';
 const Http=new XMLHttpRequest();
 
-export function login(username,passwd)
+export function login(username,passwd,callback)
 {
     Http.open('POST',url+'/login',true);
     Http.setRequestHeader('Content-Type',"application/json");
     Http.onreadystatechange=function(){
         console.log(this.responseText);
-        return this.responseText;
+        callback(this.responseText);
     }
     Http.send(JSON.stringify({
         'usuario':username,
