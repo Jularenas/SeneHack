@@ -6,7 +6,7 @@
     <h2 id="slogan">La forma mas amigable de transportarse</h2>
     <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend justo a pulvinar laoreet. Mauris varius sed enim ac accumsan. Nulla id tellus pharetra, vestibulum ante in, tempor mi. Donec at velit sed eros auctor tincidunt. Curabitur sed tincidunt sem. Mauris tempus ligula neque. Vivamus vel vestibulum quam.</h3>
     <div class="button-container">
-   <Boton  nombre="Registrate"></Boton>
+   <Boton nombre="Registrate" v-on:click="registrar"></Boton>
     </div>
     <div id="redes">
       <i class="fab fa-facebook-square"></i>
@@ -46,8 +46,7 @@ export default {
   #foto_ciudad{
     position: fixed;
     width: 100%;
-    height: 100%;
-    top:80px;
+    height: 108%;
     left:0px;
     z-index:-1;
   }
@@ -89,8 +88,16 @@ export default {
     display: inline-block;
     margin-right: 5%;
     margin-top: 35%;
-    color: #6B91B6;
+    color: #6B91B6 ;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
   }
+
+  i:hover{
+    color: #f45e61;
+    font-size: 4em;
+  }
+
   #redes{
     position: absolute;
     top:60%;

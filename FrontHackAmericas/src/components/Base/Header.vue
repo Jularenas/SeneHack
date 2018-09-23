@@ -49,7 +49,8 @@ div#header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  width: 90%;
+  left: 5%;
   height: 80px;
   background-color: #225584;
   position: fixed;
@@ -67,5 +68,6 @@ div#header {
 #logo {
   top:0px;
   height: 80px;
+  margin-left: 0px;
 }
 </style>
