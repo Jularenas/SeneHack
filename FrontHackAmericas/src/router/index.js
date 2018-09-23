@@ -5,6 +5,7 @@ import LandingPage from '@/components/LandingPage/LandingPage'
 import Input from '@/components/Base/Input'
 import Explorer from '@/components/Explorer/Explorer'
 import Boton from '@/components/Base/Boton'
+import Registrar from '@/components/Register/Register'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/Boton',
       name: 'Boton',
       component: Boton
+    },
+    {
+      path: '/Registrar',
+      name: 'Registrar',
+      component: Registrar
     }
   ]
 })

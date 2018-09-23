@@ -1,24 +1,33 @@
 <template>
   <div class = "input">
     <form>
-      <input type="text" name="name" class="question" id="nme" required autocomplete="off" />
+      <input type="text" name="name" class="question" id="nme" required autocomplete="off" v-on="listeners" v-bind="$attrs"/>
       <label for="nme"><span>{{placeholder}}</span></label>
     </form>
   </div>
 </template>
 <script>
   export default {
+    inheritAttrs: false,
     name: 'Input',
     props:{
       placeholder: String
     },
     data() {
       return{
-        placeholder: 'Otra'
+        placeholder: ''
       }
     },
     created(){
-      this.placeholder = 'Otra';
+      this.placeholder = 'Placeholder';
+    },
+    computed:{
+      listeners(){
+        return {
+          ...this.$listeners,
+          input: event => this.$emit("input", event.target.value)
+        }
+      }
     }
   }
 </script>

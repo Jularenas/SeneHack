@@ -1,16 +1,25 @@
 <template>
   <div>
     <section class="buttons">
-      <button class="draw meet">{{nombre}}</button>
+      <button class="draw meet" v-on="listeners" v-bind="$attrs">{{nombre}}</button>
     </section>
   </div>
 </template>
 
 <script>
   export default {
+    inheritAttrs: false,
     name: 'Boton',
     props:{
       nombre: String
+    },
+    computed:{
+      listeners(){
+        return {
+          ...this.$listeners,
+          button: event => this.$emit("button", event.target.value)
+        }
+      }
     }
   }
 </script>
