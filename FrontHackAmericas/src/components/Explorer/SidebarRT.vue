@@ -143,14 +143,13 @@ export default {
       })
         .then(res => res.text())
         .then(json => {
-          const parsed = json.replace(/'/g, '"');
+          const parsed = JSON.parse(json.replace(/'/g, '"'));
           console.log("parsed: ", parsed);
           este.onAdjacencyQuery(parsed);
         });
     }
   },
   mounted(){
-    console.log(this.$route.params);
   }
 };
 </script>
