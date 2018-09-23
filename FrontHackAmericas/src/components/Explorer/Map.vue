@@ -6,6 +6,7 @@
       map-type-id="terrain"
       style="width: 100%; height: 100%"
     >
+
     <GmapCircle
       :center="start"
       :radius="startRadius"
@@ -18,6 +19,20 @@
       label="Start"
       title="Start"
       :position="start"
+    />
+
+    <GmapCircle
+      :center="end"
+      :radius="endRadius"
+    />
+
+    <GmapMarker
+      clickable
+      draggable
+      @drag="location => onEndDrag(location)"
+      label="End"
+      title="End"
+      :position="end"
     />
 
     </GmapMap>

@@ -49,7 +49,7 @@ button {
   font-weight: 700;
   position: relative;
   vertical-align: middle;
-
+  cursor: pointer;
   &::before,
   &::after {
     box-sizing: inherit;
