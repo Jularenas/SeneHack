@@ -31,26 +31,32 @@ def getUsers():
         unificados.append(data)
     return unificados
 
-def getUsersRT(category):
+def getUsersRT(category,username):
     if(category is None):
-        category=''
+        category='Category'
     db = firestore.client()
-    users_ref = db.collection(u'RT')
-    docs = users_ref.where(u'categoria',u'==',category).get()
+    ref = db.collection(u'RT')
+    docs = ref.where(u'categoria',u'==',category).get()
     unificados=[]
     for doc in docs:
         data={}
         user=doc.to_dict()
+        real_user=db.collection(u'datosPersonales').document(username).get().to_dict()
         print(user)
-        data['origen']={}
-        data['origen']['longitud']=user['longitudInicial']
-        data['origen']['latitud']=user['latitudInicial']
-        data['destino']={}
-        data['destino']['longitud']=user['longitudFinal']
-        data['destino']['latitud']=user['latitudFinal']
-        data['categoria']=user['categoria']
-        print(data)
-        unificados.append(data)
+        print(real_user)
+        data['usuario']=doc.id
+        print(data['usuario']+" VS "+username)
+        if(data['usuario']!=username):
+            data['origen']={}
+            data['origen']['longitud']=user['longitudInicial']
+            data['origen']['latitud']=user['latitudInicial']
+            data['destino']={}
+            data['destino']['longitud']=user['longitudFinal']
+            data['destino']['latitud']=user['latitudFinal']
+            data['categoria']=user['categoria']
+            data['celular']=real_user['celular']
+            print(data)
+            unificados.append(data)
     print (unificados)
     return unificados
 
@@ -138,15 +144,12 @@ def deleteUserRT(username):
 
 def testData():
     usuario={}
-    usuario['usuario']="s.guzmanm"
+    usuario['usuario']="test2"
     usuario['nombre']='nombre'
     usuario['passwd']='test'
     usuario['celular']='3017912608'
     print(register(usuario))
-    usuario['usuario']="s.guzmanm"
-    usuario['passwd']='test'
-    usuario['celular']='3017912608'
-    register(usuario)
+
     print(login(usuario))
     origen={}
     origen['longitud']=12
@@ -154,29 +157,29 @@ def testData():
     destino={}
     destino['longitud']=12
     destino['latitud']=12
-    userLogin="s.guzmanm"
-    createUser(origen,destino,userLogin)
+    userLogin="test2"
+    updateUserRT(origen,destino,userLogin,'cicla')
+
+    origen={}
+    origen['longitud']=12
+    origen['latitud']=12
+    destino={}
+    destino['longitud']=12
+    destino['latitud']=12
+    userLogin="test"
+    updateUserRT(origen,destino,userLogin,'cicla')
+
+    getUsersRT('cicla','s.guzmanm')
+    getUsersRT('taxi','s.guzmanm')
+    getUsersRT('carro','s.guzmanm')
+
+    #deleteUserRT('s.guzmanm')
 
 
-usuario={}
-usuario['usuario']="s.guzmanm"
-usuario['nombre']='nombre'
-usuario['passwd']='test'
-usuario['celular']='3017912608'
-print(register(usuario))
-
-print(login(usuario))
-origen={}
-origen['longitud']=12
-origen['latitud']=12
-destino={}
-destino['longitud']=12
-destino['latitud']=12
-userLogin="s.guzmanm"
-updateUserRT(origen,destino,userLogin,'cicla')
 
 
-#deleteUserRT('s.guzmanm')
+
+
 
 
 
