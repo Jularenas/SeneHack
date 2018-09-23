@@ -15,3 +15,5 @@ yarn-error.log*
 
 #Package-lock.json
 package-lock.json
+
+src/APIKEY.js
