@@ -2,7 +2,7 @@
     <div class="registro">
       <div class="recuadro">
           <BaseInput placeholder="Nombre" v-model="name" pass="False" cantidad=50 class="nombre-i"></BaseInput>
-          <BaseInput placeholder="Email" v-model="email" pass="False" cantidad=50 class="email-i"></BaseInput>
+          <BaseInput placeholder="E-Mail" v-model="email" pass="False" cantidad=50 class="email-i"></BaseInput>
           <BaseInput placeholder="Password" v-model="pass" tipo="pass" cantidad=50 class="pass-i"></BaseInput>
           <BaseInput placeholder="Celular" v-model="cell" tipo="cel" cantidad=10 class="celular-i"></BaseInput>
           <Boton nombre="Registrarse" pass="False" class="btn-registrar" v-on:click="miMetodo"></Boton>
