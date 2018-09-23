@@ -7,6 +7,7 @@ import Explorer from '@/components/Explorer/Explorer'
 import Boton from '@/components/Base/Boton'
 import Registrar from '@/components/Register/Register'
 import RealTime from '@/components/Explorer/RealTime/RealTime'
+import RegisterSatisfactorio from '@/components/Register/RegisterSatisfactorio'
 
 Vue.use(Router)
 
@@ -47,6 +48,12 @@ export default new Router({
       path: '/RealTime',
       name:'RealTime',
       component: RealTime,
+      props: true
+    },
+    {
+      path: '/RegisterSatisfactorio',
+      name:'RegisterSatisfactorio',
+      component: RegisterSatisfactorio,
       props: true
     }
   ]

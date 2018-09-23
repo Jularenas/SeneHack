@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :loggedIn="loggedIn" :onLogin="onLogIn"></Header>
+    <Header :loggedIn="loggedIn" :onLogin="onLogIn" :onRegister="onRegister"></Header>
     <router-view></router-view>
   </div>
 </template>
@@ -17,6 +17,9 @@ export default {
     onLogIn(event){
       this.user = event;
       this.loggedIn = true;
+    },
+    onRegister(){
+      this.onRegister = true;
     }
   },
   components:{
@@ -25,7 +28,8 @@ export default {
   data() {
     return {
       loggedIn: false,
-      user: ''
+      user: '',
+      inRegister: false
     };
   }
 };
@@ -34,10 +38,16 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 html, body{
   height: 100vh;
   width: 100vw;
 }
+
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
