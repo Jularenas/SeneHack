@@ -4,7 +4,7 @@
       Encuentra parceros:
     </h1>
 
-    <label> "Radio de búsqueda (inicio)" </label>
+    <label>Radio de búsqueda (inicio)</label>
 
     <div class="slider-container">
       <Slider 
@@ -85,6 +85,10 @@ export default {
   font-size: 2rem;
 }
 
+label{
+  
+}
+
 .slider-container{
   display: flex;
   flex-direction: row;
@@ -94,4 +98,5 @@ export default {
   margin-bottom: 8px;
   width: 80%;
 }
+
 </style>
