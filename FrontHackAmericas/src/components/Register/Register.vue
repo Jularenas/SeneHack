@@ -21,6 +21,7 @@ export default {
 
 <style scoped>
   .registro{
+    width: 65%;
     margin-top: 95px;
   }
   .pass-i, .nombre-i, .celular-i{

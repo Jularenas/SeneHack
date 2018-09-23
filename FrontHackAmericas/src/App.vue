@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header :onLogin="this.onLogIn"></Header>
     <router-view></router-view>
   </div>
 </template>
@@ -13,6 +13,11 @@ import {adyacentes} from './utils.js'
 
 export default {
   name: "app",
+  methods:{
+    onLogIn(){
+        document.getElementById('log').style.display='none';
+    }
+  },
   components:{
     Header
   },

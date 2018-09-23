@@ -1,11 +1,17 @@
 <template>
-  <div>
+  <div class="content-container">
     <img id="foto_ciudad" v-bind:src="require('@/assets/Centro_internacional.png')" alt="Fondo">
     <div id="fondo"></div>
     <img id="foto" v-bind:src="require('@/assets/captura.png')" >
     <h2 id="slogan">La forma mas amigable de transportarse</h2>
     <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend justo a pulvinar laoreet. Mauris varius sed enim ac accumsan. Nulla id tellus pharetra, vestibulum ante in, tempor mi. Donec at velit sed eros auctor tincidunt. Curabitur sed tincidunt sem. Mauris tempus ligula neque. Vivamus vel vestibulum quam.</h3>
+<<<<<<< HEAD
    <Boton nombre="Registrate" v-on:click="registrar"></Boton>
+=======
+    <div class="button-container">
+   <Boton  nombre="Registrate"></Boton>
+    </div>
+>>>>>>> 019b44e9a172839c799c6513eaae585fa8ac6273
     <div id="redes">
       <i class="fab fa-facebook-square"></i>
       <i class="fab fa-twitter-square"></i>
@@ -29,6 +35,18 @@ export default {
 </script>
 
 <style scoped>
+
+.content-container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 120px;
+  margin-left: 120px;
+  height: 60vh;
+}
+
   #foto_ciudad{
     position: fixed;
     width: 100%;
@@ -51,17 +69,13 @@ export default {
         opacity: 1;
         position: absolute;
         right: 200px;
-        width: 400px;
         top: 250px;
   }
 
   #slogan{
     font-size: 3em;
     color: #D9CCC1;
-    position: relative;
     width: 40%;
-    top: 140px;
-    left: 140px;
     line-height: 50px;
     text-align: justify;
   }
@@ -70,8 +84,7 @@ export default {
     color: #D9CCC1;
     position: relative;
     width: 40%;
-    margin-top: 160px;
-    left: 140px;
+    margin-top: 30px;
     text-align: justify;
   }
   i{
@@ -88,7 +101,8 @@ export default {
     left: 11%;
     width: 40%;
   }
-  #registro{
-    position: relative;
+
+  .button-container{
+    margin-left: -0.35rem;
   }
 </style>

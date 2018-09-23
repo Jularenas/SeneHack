@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <section class="buttons">
-      <button class="draw meet" v-on="listeners" v-bind="$attrs">{{nombre}}</button>
-    </section>
+  <div class="button-container">
+      <button class="draw meet" v-bind="$attrs" v-on="listeners">{{nombre}}</button>
   </div>
 </template>
 
@@ -13,11 +11,11 @@
     props:{
       nombre: String
     },
-    computed:{
+    computed: {
       listeners(){
-        return {
-          ...this.$listeners,
-          button: event => this.$emit("button", event.target.value)
+        return{
+          ...this.listeners,
+          input: event => this.$emit("input", event.target.value)
         }
       }
     }
@@ -25,6 +23,11 @@
 </script>
 
 <style lang="scss" scoped>
+
+.button-container{
+  cursor: pointer;
+}
+
 $background: #fefefe;
 $text: #4b507a;
 
@@ -38,8 +41,8 @@ button {
   background: none;
   border: 0;
   box-sizing: border-box;
-  margin: 1em;
-  padding: 1em 2em;
+  margin: 0.9em;
+  padding: 0.8em 1.5em;
   box-shadow: inset 0 0 0 2px $red;
   color: $red;
   font-size: inherit;
